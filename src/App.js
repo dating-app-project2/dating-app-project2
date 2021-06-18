@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react"
+import routes from "./routes"
+// import Header from './components/Header'
+import { withRouter } from "react-router-dom"
+import { getUser } from "./redux/authReducer"
+import { connect } from "react-redux"
+import { createUseStyles } from "react-jss"
+import { variables } from './globalStyles/globalStyles'
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-function App() {
+const {primary}  = variables
+const useStyles = createUseStyles({
+  app: {
+    backgroundColor: primary,
+    textAlign: "center",
+    display: "flex",
+    flexFlow: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    minHeight: "100vh"
+  },
+  sideBarLayout: {
+    width: '100%',
+    minHeight: '80vh',
+    display: 'flex',
+    justifyContent: 'center'
+  },
+})
+
+const App = ({ getUser, user }) => {
+  const { app, sideBarLayout } = useStyles()
+  useEffect(() => {
+    getUser()
+  }, [getUser])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={app}>
+      {/* <Header /> */}
+      <div className={sideBarLayout}>
+        {/* {JSON.stringify(user)} */}
+        {routes}
+      </div>
+      <ToastContainer />
     </div>
-  );
+  )
 }
 
-export default App;
+const mapStateToProps = state => {
+  const { user } = state.auth
+  return {user}
+}
+
+const mapDispatchToProps = {
+  getUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App))
