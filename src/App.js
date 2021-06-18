@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import routes from "./routes"
-// import Header from './components/Header'
+import Header from './components/Header'
 import { withRouter } from "react-router-dom"
 import { getUser } from "./redux/authReducer"
 import { connect } from "react-redux"
@@ -35,7 +35,7 @@ const App = ({ getUser, user }) => {
   }, [getUser])
   return (
     <div className={app}>
-      {/* <Header /> */}
+      <Header />
       <div className={sideBarLayout}>
         {/* {JSON.stringify(user)} */}
         {routes}
