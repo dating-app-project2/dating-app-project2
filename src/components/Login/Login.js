@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
   }
 })
 
-const Login = ({ history, setUser }) => {
+const Login = ({ history, setUser, user}) => {
   const { loginForm } = useStyles()
   const login = (body) => {
     axios.post('/auth/login', body)

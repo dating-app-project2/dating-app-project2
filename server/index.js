@@ -33,10 +33,8 @@ massive({
   app.set('db', db)
   console.log("Database Connected")
   //io stuff for server (required here)
-  const io = require("socket.io")
-  (app.listen(SERVER_PORT, () =>
-   console.log(`Server listening on ${SERVER_PORT}`) , 
-   {cors: {origin: true}}))
+  const io = require("socket.io")(app.listen(SERVER_PORT, () =>
+   console.log(`Server listening on ${SERVER_PORT}`)))
    //connection for io
    io.on('connection', socket=>{
      const db = req.app.get('db')
@@ -45,7 +43,7 @@ massive({
      msgCtrl.sendMessage(db, io, socket, body, callback))
      socket.on('join', (body, callback)=> 
      msgCtrl.join(db, io, socket, body, callback))
-     socket.on("leaving", body => msgCtrl.leaving(io,  body))
+    //  socket.on("leaving", body => msgCtrl.leaving(io,  body))
    })
 }).catch(err=>console.log(err))
 
