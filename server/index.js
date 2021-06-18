@@ -35,8 +35,7 @@ massive({
   //io stuff for server (required here)
   const io = require("socket.io")
   (app.listen(SERVER_PORT, () =>
-   console.log(`Server listening on ${SERVER_PORT}`) , 
-   {cors: {origin: true}}))
+   console.log(`Server listening on ${SERVER_PORT}`)))
    //connection for io
    io.on('connection', socket=>{
      const db = req.app.get('db')
