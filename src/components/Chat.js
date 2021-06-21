@@ -7,6 +7,25 @@ import Button from "@material-ui/core/Button"
 import axios from "axios"
 import { toast } from "react-toastify"
 
+const useStyles = createUseStyles({
+    chatSection: {
+      width: "50%",
+      height: "100%",
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center"
+    },
+    "@media (max-width: 850px)": {
+      chatSection: {
+        margin: 10,
+        padding: 10,
+        flexGrow: 1,
+        flexFlow: "column",
+        justifyContent: "space-between"
+      }
+    }
+  })
+
 const Chat = ({user, match, history}) => {
     const [socket, setSocket] = useState(null)
     const [message, setMessage] = useState('')
