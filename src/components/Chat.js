@@ -1,4 +1,4 @@
-	import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { connect } from "react-redux"
 import io from "socket.io-client"
 import TextField from "@material-ui/core/TextField"
@@ -7,12 +7,28 @@ import Button from "@material-ui/core/Button"
 import axios from "axios"
 import { toast } from "react-toastify"
 
+const useStyles = createUseStyles({
+    chatSection: {
+      width: "400px",
+      height: "65%",
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "flex-end",
+      paddingBottom: "10px",
+      backgroundColor: "white"
+    }
+  })
+
 const Chat = ({user, match, history}) => {
     const [socket, setSocket] = useState(null)
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
 
     const connected = useRef(false)
+
+    const { chatSection } = useStyles()
+
+
 
     useEffect(() => {
     if (user && match.params.room && user.id) {
@@ -25,8 +41,8 @@ const Chat = ({user, match, history}) => {
     }
     return () => {
     //   socket.emit("leaving", { username: user.username })
-      socket.emit("disconnect")
-      socket.disconnect()
+    //   socket.emit("disconnect")
+    //   socket.disconnect()
       connected.current = false
     }
   }, [match.params])
@@ -70,7 +86,7 @@ const Chat = ({user, match, history}) => {
         <div >
           <h1>Chat</h1>
         </div>
-            <div>
+            <div className={chatSection}>
                 <TextField
                     value={message}
                     placeholder="send message"
