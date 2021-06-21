@@ -10,5 +10,6 @@ export default(
         <Route path="/login" component={Login}/>
         <Route path = '/register' component={Register} />
         <Route path='/about' component={About}/>
+        {/* <Route path='/chat' component={Chat}/> */}
     </Switch>
 )
