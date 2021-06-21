@@ -65,15 +65,17 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
       {(values, isSubmitting) => (
         <Form className={registerForm}>
 
+          
 
-          {/* <Button
+
+          <Button
             disabled={isSubmitting}
             type="submit"
             variant="contained"
             color="secondary"
-          > */}
-          <a href='https://video.search.yahoo.com/search/video?fr=mcafee&ei=UTF-8&p=never+gonna+give+you+up&type=E211US1485G0#id=0&vid=75170fc230cd88f32e475ff4087f81d9&action=click'>Submit</a>
-          {/* </Button> */}
+          >
+          Submit
+          </Button>
         </Form>
       )}
     </Formik>
