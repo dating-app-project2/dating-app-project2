@@ -9,6 +9,7 @@ import { createUseStyles } from "react-jss"
 import { page } from '../../globalStyles/globalStyles'
 import axios from "axios"
 import { toast } from "react-toastify"
+import Slider from '@material-ui/core/Slider';
 
 const useStyles = createUseStyles({
   registerForm: {
@@ -37,7 +38,7 @@ const useStyles = createUseStyles({
 
 
 const RegisterSurveyPage = ( {history, setUser} ) => {
-  const {registerForm} = useStyles()
+  const {registerForm, formSection} = useStyles()
 
   const finishRegister = body => {
     axios.put('/auth/finishregister', body)
@@ -48,6 +49,32 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
     })
     .catch(err=> toast.error(err.response.data))
   }
+  function valuetext(value) {
+  return `Age: ${value}`;
+}
+const marks = [
+  {
+    value: 18,
+    label: '18',
+  },
+  
+  {
+    value: 30,
+    label: '30',
+  },
+  {
+    value: 50,
+    label: '50',
+  },
+  {
+    value: 70,
+    label: '70',
+  },
+  {
+    value: 90,
+    label: '90',
+  },
+];
   return (
    <Formik
         initialValues={{
@@ -61,19 +88,54 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
         onSubmit={( {first, last, age, gender, rel_type, sexual_or} )=> {
             finishRegister({ first, last, age, gender, rel_type, sexual_or })
         }}>
+          
 
       {(values, isSubmitting) => (
         <Form className={registerForm}>
-
-
-          {/* <Button
+          <div className={formSection}>
+            <CustomTextField
+              name="first"
+              placeholder="First Name"
+            />
+            <CustomTextField
+              name="last"
+              placeholder="Last Name"
+            />
+          </div>
+           <h2>Age</h2>
+          <div className={formSection}>
+           
+            <Slider
+              defaultValue={18}
+              getAriaValueText={valuetext}
+              aria-labelledby="discrete-slider-custom"
+              step={1}
+              valueLabelDisplay="auto"
+              marks={marks}
+            />
+          </div>
+          <div className={formSection}>
+            <CustomTextField
+              name="gender"
+              placeholder="Gender"
+            />
+            <CustomTextField
+              name="rel_type"
+              placeholder="Relationship Type"
+            />
+          </div>
+          <div className={formSection}>
+            <CustomTextField
+              name="sexual_or"
+              placeholder="Sexual Orientation"
+            />
+          </div>
+          <Button
             disabled={isSubmitting}
             type="submit"
             variant="contained"
             color="secondary"
-          > */}
-          <a href='https://video.search.yahoo.com/search/video?fr=mcafee&ei=UTF-8&p=never+gonna+give+you+up&type=E211US1485G0#id=0&vid=75170fc230cd88f32e475ff4087f81d9&action=click'>Submit</a>
-          {/* </Button> */}
+         />
         </Form>
       )}
     </Formik>

@@ -15,6 +15,7 @@ module.exports={
         const mailer_result = await mailer(email)
         delete user[0].hash
         req.session.user = user[0]
+        console.log(mailer_result)
         return res.status(200).send(req.session.user)
     },
     login: async (req,res) => {
@@ -50,7 +51,7 @@ module.exports={
       const db = req.app.get('db')
       const {first, last, age, gender, rel_type, sexual_or} = req.body
       const {id} = req.params
-      const [finishedUser] = db.auth.finish_register([id, first, last, age, gender, rel_type, sexual_or])
+      const [finishedUser] = db.auth.finish_register( id, first, last, age, gender, rel_type, sexual_or )
       console.log(finishedUser)
       if(!finishedUser){
         return res.status(500).send('User creation unable to finish')

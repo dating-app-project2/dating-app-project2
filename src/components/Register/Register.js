@@ -43,7 +43,7 @@ const Register = ({ history, setUser }) => {
     axios
       .post("/auth/register", body)
       .then(results => {
-        toast.success("Login Successful")
+        toast.success("Register successful")
         setUser(results.data)
         history.push("/registersurveypage")
       })
