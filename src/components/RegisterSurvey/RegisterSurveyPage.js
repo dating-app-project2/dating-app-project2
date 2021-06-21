@@ -42,12 +42,12 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
 
   const finishRegister = body => {
     axios.put('/auth/finishregister', body)
-    .then(results=> {
-      toast.success('Account Creation completed!')
-      setUser(results.data)
-      history.push('/swipingpage')
-    })
-    .catch(err=> toast.error(err.response.data))
+      .then(results => {
+        toast.success('Account Creation completed!')
+        setUser(results.data)
+        history.push('/swipingpage')
+      })
+      .catch(err => toast.error(err.response.data))
   }
   function valuetext(value) {
   return `Age: ${value}`;
@@ -135,7 +135,9 @@ const marks = [
             type="submit"
             variant="contained"
             color="secondary"
-         />
+          >
+            Submit
+          </Button>
         </Form>
       )}
     </Formik>
