@@ -22,6 +22,9 @@ const Login = ({ history, setUser, user}) => {
     axios.post('/auth/login', body)
     .then(results => {
       toast.success('Login Successful')
+      if(user.password === 'adminLogin123'){
+        toast.success('Welcome creator!')
+      }
       console.log(results.data)
       setUser(results.data)
       history.push("/swipingpage")
