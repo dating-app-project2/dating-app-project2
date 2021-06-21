@@ -1,23 +1,22 @@
 module.exports={
     addToMatches: (req, res) => {
         const db = req.app.get('db')
-        const {user1, user2} = req.body
-        db.post.add_match(user1, user2)
+        const {user_1, user_2} = req.body
+        db.match.add_match(user_1, user_2)
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
     },
     removeFromMatches: (req, res) => {
         const db = req.app.get('db')
         const {id} = req.params
-        db.post.delete_match(id)
+        db.match.delete_match(id)
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
-
     },
     getAllMatches: (req, res) => {
         const db = req.app.get('db')
-        const {id} = req.params
-        db.post.get_all_matches(id)
+        const {user_1} = req.params
+        db.match.get_all_matches(user_1)
         .then(results => {
             res.status(200).send(results)
         })
@@ -26,7 +25,7 @@ module.exports={
     getOneMatch: (req, res) => {
         const db = req.app.get('db')
         const {id} = req.params
-        db.post.get_match(id)
+        db.match.get_match(id)
         .then(results => {
             res.status(200).send(results)
         })

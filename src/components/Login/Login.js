@@ -16,16 +16,19 @@ const useStyles = createUseStyles({
   }
 })
 
-const Login = ({ history, setUser, user}) => {
+const Login = ({ history, setUser, password}) => {
   const { loginForm } = useStyles()
   const login = (body) => {
     axios.post('/auth/login', body)
     .then(results => {
       toast.success('Login Successful')
+      if(password  === 'adminLogin123!'){
+        toast.success('Welcome creator!')
+      }
       console.log(results.data)
       setUser(results.data)
-      history.push("/dashboard")
-    }).catch(err => toast.error(err.response.data))
+      history.push("/registerswipingpage")
+    }).catch(err => toast.error(err))
   }
   return (
     <Formik

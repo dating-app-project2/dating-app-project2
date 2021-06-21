@@ -35,6 +35,8 @@ const useStyles = createUseStyles({
   }
 })
 
+
+
 const Register = ({ history, setUser }) => {
   const { registerForm, formSection } = useStyles()
   const register = body => {

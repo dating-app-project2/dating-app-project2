@@ -36,7 +36,7 @@ const useStyles = createUseStyles({
 })
 
 const RegisterSurveyPage = (  ) => {
-  
+  const {registerForm} = useStyles()
   return (
    <Formik
         initialValues={{

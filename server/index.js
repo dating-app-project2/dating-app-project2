@@ -33,10 +33,12 @@ massive({
   app.set('db', db)
   console.log("Database Connected")
   //io stuff for server (required here)
-  const io = require("socket.io")(app.listen(SERVER_PORT, () =>
-   console.log(`Server listening on ${SERVER_PORT}`)))
+  const io = require("socket.io")
+  (app.listen(SERVER_PORT, () =>
+console.log(`Server listening on ${SERVER_PORT}`)))
    //connection for io
    io.on('connection', socket=>{
+     console.log(`Socket ${socket.id} connected`)
      const db = req.app.get('db')
      //send message listener that will execute sendMessage()
      socket.on('sendMessage', (body, callback)=> 
@@ -44,7 +46,7 @@ massive({
      socket.on('join', (body, callback)=> 
      msgCtrl.join(db, io, socket, body, callback))
     //  socket.on("leaving", body => msgCtrl.leaving(io,  body))
-   })
+    })
 }).catch(err=>console.log(err))
 
 //auth endpoints
@@ -56,14 +58,13 @@ app.get('/auth/user', authCtrl.getUser)
 //matches endpoints
 app.post('/match/add', matchCtrl.addToMatches)
 app.delete('/match/:id', matchCtrl.removeFromMatches)
-app.get('/match/all', matchCtrl.getAllMatches)
+app.get('/match/all/:user_1', matchCtrl.getAllMatches)
 app.get('/match/:id', matchCtrl.getOneMatch)
 
 //requests endpoints
 app.post('/request/create', reqCtrl.createRequest)
 app.delete('/request/:id', reqCtrl.deleteRequest)
-app.get('/request/sent', reqCtrl.getSentRequests)
-app.get('/request/received', reqCtrl.getReceivedRequests)
+app.get('/request/sent/:sender_id', reqCtrl.getSentRequests)
+app.get('/request/received/:receiver_id', reqCtrl.getReceivedRequests)
 
 //messages are being managed in io. Scroll up for sockets info
-
