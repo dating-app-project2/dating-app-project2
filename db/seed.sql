@@ -38,6 +38,30 @@ CREATE TABLE messages(
     message_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+INSERT INTO users
+(email, password)
+VALUES 
+('jadenitripp@gmail.com', 'adminLogin123!'),
+('joshuadreyleavitt@gmail.com', 'adminLogin123!'),
+('danielboesch20@gmail.com', 'adminLogin123!');
+
+INSERT INTO requests
+(sender_id, receiver_id)
+VALUES
+(1, 2),
+(1, 3),
+(2, 1),
+(2, 3),
+(3, 1),
+(3, 2);
+
+INSERT INTO matches
+(user_1, user_2)
+VALUES
+(1, 2),
+(2, 3),
+(1, 3);
+
 SELECT * FROM users;
 SELECT * FROM requests;
 SELECT * FROM matches;
