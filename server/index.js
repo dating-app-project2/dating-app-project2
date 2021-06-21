@@ -69,3 +69,8 @@ app.get('/request/received/:receiver_id', reqCtrl.getReceivedRequests)
 
 //messages are being managed in io. Scroll up for sockets info
 
+//socket endpoints
+// app.get("/chat/user", msgCtrl.)
+// app.get("/chat/other", msgCtrl.)
+app.post("/chat/join/:chatroom_id", msgCtrl.join)
+// app.get("/chat/all", msgCtrl.)
