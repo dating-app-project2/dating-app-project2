@@ -9,9 +9,6 @@ module.exports={
     removeFromMatches: (req, res) => {
         const db = req.app.get('db')
         const {id} = req.params
-        if(!id){
-            return res.status(401).send(`Match ID:${id} does not exist.`)
-        }
         db.match.delete_match(id)
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))

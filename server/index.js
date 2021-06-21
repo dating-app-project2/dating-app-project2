@@ -56,7 +56,7 @@ app.get('/auth/user', authCtrl.getUser)
 //matches endpoints
 app.post('/match/add', matchCtrl.addToMatches)
 app.delete('/match/:id', matchCtrl.removeFromMatches)
-app.get('/match/all/:user_id', matchCtrl.getAllMatches)
+app.get('/match/all/:user_1', matchCtrl.getAllMatches)
 app.get('/match/:id', matchCtrl.getOneMatch)
 
 //requests endpoints
