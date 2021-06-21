@@ -5,6 +5,7 @@ import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import RegisterSurveyPage from './components/RegisterSurvey/RegisterSurveyPage'
 import Chat from './components/Chat'
+import SwipingPage from './components/SwipingPage/SwipingPage'
 
 
 export default(
@@ -15,5 +16,6 @@ export default(
         <Route path='/about' component={About}/>
         <Route path="/registersurveypage" component={RegisterSurveyPage}/>
         <Route path="/chat" component={Chat}/>
+        <Route path="/swipingpage" component={SwipingPage}/>
     </Switch>
 )

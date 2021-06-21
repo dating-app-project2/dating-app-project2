@@ -2,7 +2,7 @@ import React from "react"
 import { Formik, Form } from "formik"
 import Button from "@material-ui/core/Button"
 import CustomTextField from "../CustomTextField/CustomTextField"
-import registerSchema from "../../schema/schema"
+import { finishRegisterSchema } from "../../schema/schema"
 import { connect } from "react-redux"
 import { setUser } from "../../redux/authReducer"
 import { createUseStyles } from "react-jss"
@@ -87,7 +87,9 @@ const marks = [
         }}
         onSubmit={( {first, last, age, gender, rel_type, sexual_or} )=> {
             finishRegister({ first, last, age, gender, rel_type, sexual_or })
-        }}>
+            history.push('/swipingpage')
+        }}
+        validationSchema={finishRegisterSchema}>
           
 
       {(values, isSubmitting) => (
@@ -136,7 +138,7 @@ const marks = [
             variant="contained"
             color="secondary"
           >
-            Submit
+            Finish registration
           </Button>
         </Form>
       )}
