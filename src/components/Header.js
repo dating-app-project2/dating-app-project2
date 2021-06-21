@@ -7,6 +7,8 @@ import axios from 'axios'
 import {variables} from '../globalStyles/globalStyles'
 import {AiOutlineLogout} from 'react-icons/ai'
 import {FcAbout} from 'react-icons/fc'
+import {IoMdChatboxes} from 'react-icons/io'
+import {AiFillHome} from 'react-icons/ai'
 
 const {primary, secondary, sand, red} = variables
 const useStyles = createUseStyles({
@@ -38,11 +40,23 @@ const useStyles = createUseStyles({
         "&hover":{
           backgroundColor: secondary
         }
+    },
+    chatIcon:{
+      color: red,
+        "&hover":{
+          backgroundColor: secondary
+        }
+    },
+    homeIcon:{
+      color: red,
+        "&hover":{
+          backgroundColor: secondary
+        }
     }
 })
 
 const Header = ({user, setUser, history, location}) => {
-    const {header, nav, icons, questionIcon} = useStyles()
+    const {header, nav, icons, questionIcon, chatIcon, homeIcon} = useStyles()
     const logout = () => {
         axios.post('/auth/logout')
         .then(()=> 
@@ -68,6 +82,16 @@ const Header = ({user, setUser, history, location}) => {
       user &&
       user.id ? (
         <nav className={nav}>
+          <AiFillHome
+            className={homeIcon}
+            size={50}
+            onClick={() => history.push("/swipingpage")}
+          />
+          <IoMdChatboxes
+            className={chatIcon}
+            size={50}
+            onClick={() => history.push("/chat")}
+          />
           <FcAbout
             className={questionIcon}
             size={50}
