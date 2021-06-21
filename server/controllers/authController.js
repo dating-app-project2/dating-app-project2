@@ -45,7 +45,13 @@ module.exports={
       return res.status(401).send('No user found')
     }else{
       res.status(200).send(req.session.user)
+    }},
+    finishRegister: (req, res) => {
+      const db = req.app.get('db')
+      const {first, last, age, gender, rel_type, sexual_or} = req.body
+      const {id} = req.params
+      const [finishedUser] = db.auth.finish_register([id, first, last, age, gender, rel_type, sexual_or])
     }
-}}
+  }
 
 //test
