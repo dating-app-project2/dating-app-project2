@@ -4,7 +4,7 @@ module.exports={
        const {sender_id, receiver_id} = req.body
        const [newRequest] = db.request.create_request(sender_id, receiver_id)
        if(newRequest){
-           res.status(200).send(newRequest)
+           return res.status(200).send(newRequest)
        }else{
             return res.status(500).send('New request could not be made. Please check request ctrl.')
        }
