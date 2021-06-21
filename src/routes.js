@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import RegisterSurveyPage from './components/RegisterSurvey/RegisterSurveyPage'
+import Chat from './components/Chat'
 
 
 export default(
@@ -13,5 +14,6 @@ export default(
         <Route path = '/register' component={Register} />
         <Route path='/about' component={About}/>
         <Route path="/registersurveypage" component={RegisterSurveyPage}/>
+        <Route path="/chat" component={Chat}/>
     </Switch>
 )

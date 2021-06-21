@@ -35,6 +35,7 @@ const useStyles = createUseStyles({
   }
 })
 
+
 const RegisterSurveyPage = ( {history, setUser} ) => {
   const {registerForm} = useStyles()
 
@@ -61,21 +62,21 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
             finishRegister({ first, last, age, gender, rel_type, sexual_or })
         }}>
 
-            {(values, isSubmitting)=> (
+      {(values, isSubmitting) => (
         <Form className={registerForm}>
-          
-          
-          <Button
+
+
+          {/* <Button
             disabled={isSubmitting}
             type="submit"
             variant="contained"
             color="secondary"
-          >
-            Submit
-          </Button>
+          > */}
+          <a href='https://video.search.yahoo.com/search/video?fr=mcafee&ei=UTF-8&p=never+gonna+give+you+up&type=E211US1485G0#id=0&vid=75170fc230cd88f32e475ff4087f81d9&action=click'>Submit</a>
+          {/* </Button> */}
         </Form>
       )}
-</Formik>
+    </Formik>
   )
 }
 
