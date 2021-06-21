@@ -9,20 +9,13 @@ import { toast } from "react-toastify"
 
 const useStyles = createUseStyles({
     chatSection: {
-      width: "50%",
-      height: "100%",
+      width: "400px",
+      height: "65%",
       display: "flex",
       justifyContent: "space-around",
-      alignItems: "center"
-    },
-    "@media (max-width: 850px)": {
-      chatSection: {
-        margin: 10,
-        padding: 10,
-        flexGrow: 1,
-        flexFlow: "column",
-        justifyContent: "space-between"
-      }
+      alignItems: "flex-end",
+      paddingBottom: "10px",
+      backgroundColor: "white"
     }
   })
 
@@ -32,6 +25,10 @@ const Chat = ({user, match, history}) => {
     const [messages, setMessages] = useState([])
 
     const connected = useRef(false)
+
+    const { chatSection } = useStyles()
+
+
 
     useEffect(() => {
     if (user && match.params.room && user.id) {
@@ -44,8 +41,8 @@ const Chat = ({user, match, history}) => {
     }
     return () => {
     //   socket.emit("leaving", { username: user.username })
-      socket.emit("disconnect")
-      socket.disconnect()
+    //   socket.emit("disconnect")
+    //   socket.disconnect()
       connected.current = false
     }
   }, [match.params])
@@ -89,7 +86,7 @@ const Chat = ({user, match, history}) => {
         <div >
           <h1>Chat</h1>
         </div>
-            <div>
+            <div className={chatSection}>
                 <TextField
                     value={message}
                     placeholder="send message"
