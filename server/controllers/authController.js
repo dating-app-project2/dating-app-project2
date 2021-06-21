@@ -51,6 +51,12 @@ module.exports={
       const {first, last, age, gender, rel_type, sexual_or} = req.body
       const {id} = req.params
       const [finishedUser] = db.auth.finish_register([id, first, last, age, gender, rel_type, sexual_or])
+      console.log(finishedUser)
+      if(!finishedUser){
+        return res.status(500).send('User creation unable to finish')
+      }
+      req.session.user = finishedUser
+      return res.status(200).send(req.session.user)
     }
   }
 
