@@ -35,8 +35,18 @@ const useStyles = createUseStyles({
   }
 })
 
-const RegisterSurveyPage = (  ) => {
+const RegisterSurveyPage = ( {history, setUser} ) => {
   const {registerForm} = useStyles()
+
+  const finishRegister = body => {
+    axios.put('/auth/finishregister', body)
+    .then(results=> {
+      toast.success('Account Creation completed!')
+      setUser(results.data)
+      history.push('/swipingpage')
+    })
+    .catch(err=> toast.error(err.response.data))
+  }
   return (
    <Formik
         initialValues={{
@@ -46,6 +56,9 @@ const RegisterSurveyPage = (  ) => {
             gender: '',
             rel_type: '',
             sexual_or: ''
+        }}
+        onSubmit={( {first, last, age, gender, rel_type, sexual_or} )=> {
+            finishRegister({ first, last, age, gender, rel_type, sexual_or })
         }}>
 
             {(values, isSubmitting)=> (
