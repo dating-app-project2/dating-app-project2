@@ -9,15 +9,17 @@ module.exports={
     removeFromMatches: (req, res) => {
         const db = req.app.get('db')
         const {id} = req.params
+        if(!id){
+            return res.status(401).send(`Match ID:${id} does not exist.`)
+        }
         db.match.delete_match(id)
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
-
     },
     getAllMatches: (req, res) => {
         const db = req.app.get('db')
-        const {id} = req.params
-        db.match.get_all_matches(id)
+        const {user_1} = req.params
+        db.match.get_all_matches(user_1)
         .then(results => {
             res.status(200).send(results)
         })
