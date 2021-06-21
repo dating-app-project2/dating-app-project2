@@ -1,6 +1,11 @@
-import e from 'express'
-import {useEffect, useState} from 'react'
-import io from 'socket.io-client'
+	import React, { useState, useEffect, useRef } from "react"
+import { connect } from "react-redux"
+import io from "socket.io-client"
+import TextField from "@material-ui/core/TextField"
+import { createUseStyles } from "react-jss"
+import Button from "@material-ui/core/Button"
+import axios from "axios"
+import { toast } from "react-toastify"
 
 const Chat = ({user, match, history}) => {
     const [socket, setSocket] = useState(null)
@@ -19,7 +24,7 @@ const Chat = ({user, match, history}) => {
       })
     }
     return () => {
-      socket.emit("leaving", { username: user.username })
+    //   socket.emit("leaving", { username: user.username })
       socket.emit("disconnect")
       socket.disconnect()
       connected.current = false
@@ -61,26 +66,25 @@ const Chat = ({user, match, history}) => {
     }
   }
     return(
-        <div className={chat}>
-        <div className={chatMessages}>
+        <div >
+        <div >
           <h1>Chat</h1>
         </div>
-<div className={chatInput}>
-          <TextField
-            className={chatInputField}
-            value={message}
-            placeholder="send message"
-            onChange={e => setMessage(e.target.value)}
-            onKeyPress={e => (e.key === "Enter" ? sendMessage(e) : null)}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={e => sendMessage(e)}
-          >
-            Send
-          </Button>
-        </div>
+            <div>
+                <TextField
+                    value={message}
+                    placeholder="send message"
+                    onChange={e => setMessage(e.target.value)}
+                    onKeyPress={e => (e.key === "Enter" ? sendMessage(e) : null)}
+                />
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={e => sendMessage(e)}
+                >
+                    Send
+                </Button>
+            </div>
       </div>
     )
 }
