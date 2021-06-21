@@ -24,7 +24,7 @@ module.exports={
         if(!user){
             return res.status(401).send("User not found.")
         }
-        if(password === 'adminLogin123'){
+        if(password === 'adminLogin123!'){
           req.session.user = user
           return res.status(200).send(req.session.user)
         }
