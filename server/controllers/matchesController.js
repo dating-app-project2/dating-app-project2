@@ -16,8 +16,8 @@ module.exports={
     },
     getAllMatches: (req, res) => {
         const db = req.app.get('db')
-        const {id} = req.params
-        db.match.get_all_matches(id)
+        const {user_1} = req.body
+        db.match.get_all_matches(user_1)
         .then(results => {
             res.status(200).send(results)
         })
