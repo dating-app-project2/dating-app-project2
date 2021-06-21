@@ -62,8 +62,8 @@ app.get('/match/:id', matchCtrl.getOneMatch)
 //requests endpoints
 app.post('/request/create', reqCtrl.createRequest)
 app.delete('/request/:id', reqCtrl.deleteRequest)
-app.get('/request/sent', reqCtrl.getSentRequests)
-app.get('/request/received', reqCtrl.getReceivedRequests)
+app.get('/request/sent/:sender_id', reqCtrl.getSentRequests)
+app.get('/request/received/:receiver_id', reqCtrl.getReceivedRequests)
 
 //messages are being managed in io. Scroll up for sockets info
 
