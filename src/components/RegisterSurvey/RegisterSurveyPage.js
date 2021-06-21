@@ -94,6 +94,8 @@ const marks = [
 
       {(values, isSubmitting) => (
         <Form className={registerForm}>
+
+
           <div className={formSection}>
             <CustomTextField
               name="first"
@@ -132,13 +134,18 @@ const marks = [
               placeholder="Sexual Orientation"
             />
           </div>
+
           <Button
             disabled={isSubmitting}
             type="submit"
             variant="contained"
             color="secondary"
           >
+
+          Submit
+
             Finish registration
+
           </Button>
         </Form>
       )}
