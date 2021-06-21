@@ -12,7 +12,6 @@ module.exports={
         db.match.delete_match(id)
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
-
     },
     getAllMatches: (req, res) => {
         const db = req.app.get('db')
