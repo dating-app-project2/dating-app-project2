@@ -24,7 +24,7 @@ const Login = ({ history, setUser, user}) => {
       toast.success('Login Successful')
       console.log(results.data)
       setUser(results.data)
-      history.push("/dashboard")
+      history.push("/swipingpage")
     }).catch(err => toast.error(err.response.data))
   }
   return (
