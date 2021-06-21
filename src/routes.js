@@ -3,7 +3,8 @@ import About from './components/About/About'
 import LandingPage from './components/LandingPage'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
-import RegisterSurveyPage from './components/RegisterSurvey/RegisterSurveyPage'
+import RegisterSurveyPage from './components/RegisterSurveyPage/RegisterSurveyPage'
+
 
 export default(
     <Switch>
