@@ -45,7 +45,7 @@ const Register = ({ history, setUser }) => {
       .then(results => {
         toast.success("Register successful")
         setUser(results.data)
-        history.push("/registersurveypage")
+        history.push("/registerSurveyPage")
       })
       .catch(err => toast.error(err.response.data))
   }
