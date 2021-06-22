@@ -47,6 +47,7 @@ module.exports = (MAIL_TO) => {
         adventus vultus comedat cerebella viventium. Qui offenderit rapto, terribilem incessu. The voodoo 
         sacerdos suscitat mortuos comedere carnem. Search for solum oculi eorum defunctis cerebro. Nescio an 
         Undead zombies. Sicut malus movie horror.`;
+        
 
     const mailOptions = {
         from: USER_EMAIL,
