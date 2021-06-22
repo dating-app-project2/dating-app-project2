@@ -37,14 +37,25 @@ massive({
   (app.listen(SERVER_PORT, () =>
 console.log(`Server listening on ${SERVER_PORT}`)))
    //connection for io
-   io.on('connection', socket=>{
+   io.on('connection', (socket) =>{
      console.log(`Socket ${socket.id} connected`)
-     const db = req.app.get('db')
+     socket.on('disconnect', () => {
+       console.log(`Socket ${socket.id} disconnected`)
+     })
+    //  const db = req.app.get('db')
      //send message listener that will execute sendMessage()
-     socket.on('sendMessage', (body, callback)=> 
-     msgCtrl.sendMessage(db, io, socket, body, callback))
-     socket.on('join', (body, callback)=> 
-     msgCtrl.join(db, io, socket, body, callback))
+
+
+     socket.on('sendMessage', (body) => 
+    //  msgCtrl.sendMessage(db, io, socket, body, callback)
+    {
+      console.log(body)
+      io.emit('relay-message', body)
+    }
+     )
+    //  socket.on('join', (body, callback)=> 
+    //  msgCtrl.join(db, io, socket, body, callback))
+  
     //  socket.on("leaving", body => msgCtrl.leaving(io,  body))
     })
 }).catch(err=>console.log(err))
