@@ -8,24 +8,36 @@ import axios from "axios"
 import { toast } from "react-toastify"
 
 const useStyles = createUseStyles({
-    chatSection: {
+    chatSectionBox: {
       width: "400px",
-      height: "65%",
+      height: "500px",
       display: "flex",
-      justifyContent: "space-around",
+      justifyContent: "space-between",
       flexDirection: "column",
       alignItems: "flex-end",
-      paddingBottom: "10px",
       backgroundColor: "white"
     },
-    chatSection2: {
+    chatSection: {
       width: "400px",
-      height: "45%",
+      height: "85%",
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      backgroundColor: "white",
+      flexDirection: "column",
+      borderBottom: "1px solid black",
+      overflow: "auto"
+
+    },
+    inputAndBtn: {
+      width: "400px",
+      height: "15%",
       display: "flex",
       justifyContent: "space-around",
-      alignItems: "flex-start",
-      paddingBottom: "10px",
-      backgroundColor: "white"
+      alignItems: "center",
+      backgroundColor: "white",
+      flexDirection: "row",
+
     }
   })
 
@@ -36,8 +48,9 @@ const Chat = ({user, match, history}) => {
 
     const connected = useRef(false)
 
+    const { chatSectionBox } = useStyles()
     const { chatSection } = useStyles()
-    const { chatSection2 } = useStyles()
+    const { inputAndBtn } = useStyles()
 
 
     useEffect(() => {
@@ -114,28 +127,29 @@ const Chat = ({user, match, history}) => {
         <div >
           <h1>Chat</h1>
         </div>
-            <div className={chatSection}>
-              <div className={chatSection2}>
+            <div className={chatSectionBox}>
+              <div className={chatSection}>
                 {messages.map((body) => (
-                    <div>
+                  <div>
                         {body.message}
                     </div>
                 ))}
               </div>
-                <TextField
-                    value={message}
-                    placeholder="send message"
-                    onChange={e => setMessage(e.target.value)}
-                    onKeyPress={e => (e.key === "Enter" ? sendMessage(e) : null)}
-                />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={e => sendMessage(e)}
-                >
-                    Send
-                </Button>
-                
+                <div className={inputAndBtn}>
+                  <TextField
+                      value={message}
+                      placeholder="send message"
+                      onChange={e => setMessage(e.target.value)}
+                      onKeyPress={e => (e.key === "Enter" ? sendMessage(e) : null)}
+                      />
+                  <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={e => sendMessage(e)}
+                      >
+                      Send
+                  </Button>
+                </div>
             </div>
       </div>
     )
