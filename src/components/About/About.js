@@ -40,9 +40,9 @@ const About = () => {
       </ul>
       <h2>Form Construction:</h2>
       <ul>
-        <li>Form functionality: Formik</li>
-        <li>form basic style: Material-ui</li>
-        <li>form validation schema: Yup</li>
+        <li>Form Functionality: Formik</li>
+        <li>Form Basic Style: Material-ui</li>
+        <li>Form Validation Schema: Yup</li>
       </ul>
       <h2>CSS in JS/Styling:</h2>
       <ul>

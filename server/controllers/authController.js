@@ -47,11 +47,14 @@ module.exports={
     }else{
       res.status(200).send(req.session.user)
     }},
-    finishRegister: (req, res) => {
+    finishRegister: async (req, res) => {
       const db = req.app.get('db')
       const {first, last, age, gender, rel_type, sexual_or} = req.body
-      const {id} = req.params
-      const [finishedUser] = db.auth.finish_register( id, first, last, age, gender, rel_type, sexual_or )
+      console.log(req.body)
+      console.log(req.params)
+    
+      const {id} = req.session.user
+      const [finishedUser] = await db.auth.finish_register( id, first, last, age, gender, rel_type, sexual_or )
       console.log(finishedUser)
       if(!finishedUser){
         return res.status(500).send('User creation unable to finish')

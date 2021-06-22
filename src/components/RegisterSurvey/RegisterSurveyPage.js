@@ -9,7 +9,6 @@ import { createUseStyles } from "react-jss"
 import { page } from '../../globalStyles/globalStyles'
 import axios from "axios"
 import { toast } from "react-toastify"
-import Slider from '@material-ui/core/Slider';
 
 const useStyles = createUseStyles({
   registerForm: {
@@ -38,43 +37,21 @@ const useStyles = createUseStyles({
 
 
 const RegisterSurveyPage = ( {history, setUser} ) => {
+
   const {registerForm, formSection} = useStyles()
 
   const finishRegister = body => {
-    axios.put('/auth/finishregister', body)
+    console.log(body)
+    axios.put(`/auth/finishregister`, body)
       .then(results => {
         toast.success('Account Creation completed!')
         setUser(results.data)
         history.push('/swipingpage')
+        
       })
       .catch(err => toast.error(err.response.data))
   }
-  function valuetext(value) {
-  return `Age: ${value}`;
-}
-const marks = [
-  {
-    value: 18,
-    label: '18',
-  },
-  
-  {
-    value: 30,
-    label: '30',
-  },
-  {
-    value: 50,
-    label: '50',
-  },
-  {
-    value: 70,
-    label: '70',
-  },
-  {
-    value: 90,
-    label: '90',
-  },
-];
+
   return (
    <Formik
         initialValues={{
@@ -85,17 +62,17 @@ const marks = [
             rel_type: '',
             sexual_or: ''
         }}
-        onSubmit={( {first, last, age, gender, rel_type, sexual_or} )=> {
-            finishRegister({ first, last, age, gender, rel_type, sexual_or })
-            history.push('/swipingpage')
-        }}
         validationSchema={finishRegisterSchema}>
           
 
       {(values, isSubmitting) => (
-        <Form className={registerForm}>
+        <Form className={registerForm}
 
-
+         onSubmit={()=> {
+            finishRegister({...values.values })
+            history.push('/swipingpage')
+         }}
+        >
           <div className={formSection}>
             <CustomTextField
               name="first"
@@ -108,15 +85,11 @@ const marks = [
           </div>
            <h2>Age</h2>
           <div className={formSection}>
-           
-            <Slider
-              defaultValue={18}
-              getAriaValueText={valuetext}
-              aria-labelledby="discrete-slider-custom"
-              step={1}
-              valueLabelDisplay="auto"
-              marks={marks}
+           <CustomTextField
+              name="age"
+              placeholder="Age"
             />
+            
           </div>
           <div className={formSection}>
             <CustomTextField
@@ -158,5 +131,3 @@ const mapDispatchToProps = {
 }
 
 export default connect(null, mapDispatchToProps)(RegisterSurveyPage)
-
-//test
