@@ -14,8 +14,8 @@ export default(
         <Route path="/login" component={Login}/>
         <Route path = '/register' component={Register} />
         <Route path='/about' component={About}/>
-        <Route path="/registersurveypage" component={RegisterSurveyPage}/>
+        <Route path="/registerSurveyPage" component={RegisterSurveyPage}/>
         <Route path="/chat" component={Chat}/>
-        <Route path="/swipingpage" component={SwipingPage}/>
+        <Route path="/swipingPage" component={SwipingPage}/>
     </Switch>
 )

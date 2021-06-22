@@ -46,7 +46,7 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
       .then(results => {
         toast.success('Account Creation completed!')
         setUser(results.data)
-        history.push('/swipingpage')
+        history.push('/swipingPage')
         
       })
       .catch(err => toast.error(err.response.data))
@@ -70,7 +70,7 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
 
          onSubmit={()=> {
             finishRegister({...values.values })
-            history.push('/swipingpage')
+            history.push('/swipingPage')
          }}
         >
           <div className={formSection}>

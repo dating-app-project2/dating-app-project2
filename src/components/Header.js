@@ -86,7 +86,7 @@ const Header = ({user, setUser, history, location}) => {
           <AiFillHome
             className={homeIcon}
             size={50}
-            onClick={() => history.push("/swipingpage")}
+            onClick={() => history.push("/swipingPage")}
           />
           <IoMdChatboxes
             className={chatIcon}
@@ -115,11 +115,6 @@ const Header = ({user, setUser, history, location}) => {
             size={50}
             onClick={() => history.push("/about")}
           />
-         {/* <PovLogo
-          className={icons}
-          size={50}
-          id= 'ai'
-          onClick={() => history.push("/swipingpage")}/> */}
 
           {location.pathname === "/login" ? (
             <button
