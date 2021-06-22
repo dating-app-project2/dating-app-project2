@@ -50,7 +50,8 @@ const useStyles = createUseStyles({
     homeIcon:{
       color: red,
         "&hover":{
-          backgroundColor: secondary
+          backgroundColor: secondary,
+          'cursor': 'pointer'
         }
     }
 })
