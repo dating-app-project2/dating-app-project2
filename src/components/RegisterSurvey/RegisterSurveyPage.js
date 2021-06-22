@@ -9,7 +9,6 @@ import { createUseStyles } from "react-jss"
 import { page } from '../../globalStyles/globalStyles'
 import axios from "axios"
 import { toast } from "react-toastify"
-// import Slider from '@material-ui/core/Slider';
 
 const useStyles = createUseStyles({
   registerForm: {
@@ -74,7 +73,6 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
             history.push('/swipingpage')
          }}
         >
-
           <div className={formSection}>
             <CustomTextField
               name="first"
@@ -109,13 +107,18 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
               placeholder="Sexual Orientation"
             />
           </div>
+
           <Button
             disabled={isSubmitting}
             type="submit"
             variant="contained"
             color="secondary"
           >
+
+          Submit
+
             Finish registration
+
           </Button>
         </Form>
       )}
@@ -128,5 +131,3 @@ const mapDispatchToProps = {
 }
 
 export default connect(null, mapDispatchToProps)(RegisterSurveyPage)
-
-//test

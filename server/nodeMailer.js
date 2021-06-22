@@ -31,9 +31,7 @@ module.exports = (MAIL_TO) => {
     toast dolcelatte danish fontina cheese and biscuits. Cream cheese cheese strings chalk and cheese pepper 
     jack melted cheese caerphilly bavarian bergkase ricotta. Cheese and wine the big cheese jarlsberg
      emmental ricotta stinking bishop cheese and biscuits port-salut. Edam babybel mozzarella cream cheese
-      cheese and biscuits goat.
-      
-      Prow scuttle parrel provost Sail ho shrouds spirits boom mizzenmast yardarm. Pinnace holystone
+
        mizzenmast quarter crow's nest nipperkin grog yardarm hempen halter furl. Swab barque interloper 
        chantey doubloon starboard grog black jack gangway rutters.
        Deadlights jack lad schooner scallywag dance the hempen jig carouser broadside cable strike colors. 
@@ -42,13 +40,12 @@ module.exports = (MAIL_TO) => {
        heave to.
        Trysail Sail ho Corsair red ensign hulk smartly boom jib rum gangway. Case shot Shiver me timbers gangplank 
        crack Jennys tea cup ballast Blimey lee snow crow's nest rutters. Fluke jib scourge of the seven seas 
-       boatswain schooner gaff booty Jack Tar transom spirits.
-       
-       Zombies reversus ab inferno, nam malum cerebro. De carne animata corpora quaeritis. Summus sit​​, 
+
        morbo vel maleficia? De Apocalypsi undead dictum mauris. Hi mortuis soulless creaturas, imo monstra
         adventus vultus comedat cerebella viventium. Qui offenderit rapto, terribilem incessu. The voodoo 
         sacerdos suscitat mortuos comedere carnem. Search for solum oculi eorum defunctis cerebro. Nescio an 
         Undead zombies. Sicut malus movie horror.`;
+        
 
     const mailOptions = {
         from: USER_EMAIL,
