@@ -7693,10 +7693,10 @@
   dependencies:
     "object-visit" "^1.0.0"
 
-"massive@^6.9.0":
-  "integrity" "sha512-MbZhxUGG7pVkR/SvOAv572AXoY7HE3ed4P4XZ9e119hBQQwt4oFN+zSa8oLKd6A10VPdTK6q7Y8+XK72j/Bnng=="
-  "resolved" "https://registry.npmjs.org/massive/-/massive-6.9.0.tgz"
-  "version" "6.9.0"
+"massive@^6.9.1":
+  "integrity" "sha512-sRfJypImfx/m+uAeuuTe/aqBgGObuawHnzVmgdFZssQBDQ/nO3Nq9URqyCcJ3lqtmPJR9wK/yTQ9Q2I77P4KIA=="
+  "resolved" "https://registry.npmjs.org/massive/-/massive-6.9.1.tgz"
+  "version" "6.9.1"
   dependencies:
     "commander" "7.2.0"
     "glob" "7.1.7"
