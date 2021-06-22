@@ -37,15 +37,18 @@ const useStyles = createUseStyles({
 })
 
 
-const RegisterSurveyPage = ( {history, setUser} ) => {
+const RegisterSurveyPage = ( {history, setUser, user} ) => {
+
   const {registerForm, formSection} = useStyles()
 
   const finishRegister = body => {
-    axios.put('/auth/finishregister', body)
+    console.log(body)
+    axios.put(`/auth/finishregister/${user.id}`, body)
       .then(results => {
         toast.success('Account Creation completed!')
         setUser(results.data)
         history.push('/swipingpage')
+        console.log(user)
       })
       .catch(err => toast.error(err.response.data))
   }
@@ -85,15 +88,19 @@ const marks = [
             rel_type: '',
             sexual_or: ''
         }}
-        onSubmit={( {first, last, age, gender, rel_type, sexual_or} )=> {
-            finishRegister({ first, last, age, gender, rel_type, sexual_or })
-            history.push('/swipingpage')
-        }}
         validationSchema={finishRegisterSchema}>
           
 
       {(values, isSubmitting) => (
-        <Form className={registerForm}>
+        <Form className={registerForm}
+
+         onSubmit={( {first, last, age, gender, rel_type, sexual_or} )=> {
+           console.log(user)
+            finishRegister({ first, last, age, gender, rel_type, sexual_or })
+            history.push('/swipingpage')
+         }}
+        >
+
           <div className={formSection}>
             <CustomTextField
               name="first"

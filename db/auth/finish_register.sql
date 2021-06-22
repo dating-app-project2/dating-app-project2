@@ -6,3 +6,4 @@ gender = $5,
 rel_type = $6,
 sexual_or = $7
 WHERE id = $1
+RETURNING *;
