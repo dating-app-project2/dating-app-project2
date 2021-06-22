@@ -52,7 +52,8 @@ module.exports={
       const {first, last, age, gender, rel_type, sexual_or} = req.body
       console.log(req.body)
       console.log(req.params)
-      const {id} = req.params
+    
+      const {id} = req.session.user
       const [finishedUser] = await db.auth.finish_register( id, first, last, age, gender, rel_type, sexual_or )
       console.log(finishedUser)
       if(!finishedUser){

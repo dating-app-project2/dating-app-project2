@@ -9,7 +9,7 @@ import { createUseStyles } from "react-jss"
 import { page } from '../../globalStyles/globalStyles'
 import axios from "axios"
 import { toast } from "react-toastify"
-import Slider from '@material-ui/core/Slider';
+// import Slider from '@material-ui/core/Slider';
 
 const useStyles = createUseStyles({
   registerForm: {
@@ -37,47 +37,22 @@ const useStyles = createUseStyles({
 })
 
 
-const RegisterSurveyPage = ( {history, setUser, user} ) => {
+const RegisterSurveyPage = ( {history, setUser} ) => {
 
   const {registerForm, formSection} = useStyles()
 
   const finishRegister = body => {
     console.log(body)
-    axios.put(`/auth/finishregister/${user.id}`, body)
+    axios.put(`/auth/finishregister`, body)
       .then(results => {
         toast.success('Account Creation completed!')
         setUser(results.data)
         history.push('/swipingpage')
-        console.log(user)
+        
       })
       .catch(err => toast.error(err.response.data))
   }
-  function valuetext(value) {
-  return `Age: ${value}`;
-}
-const marks = [
-  {
-    value: 18,
-    label: '18',
-  },
-  
-  {
-    value: 30,
-    label: '30',
-  },
-  {
-    value: 50,
-    label: '50',
-  },
-  {
-    value: 70,
-    label: '70',
-  },
-  {
-    value: 90,
-    label: '90',
-  },
-];
+
   return (
    <Formik
         initialValues={{
@@ -94,9 +69,8 @@ const marks = [
       {(values, isSubmitting) => (
         <Form className={registerForm}
 
-         onSubmit={( {first, last, age, gender, rel_type, sexual_or} )=> {
-           console.log(user)
-            finishRegister({ first, last, age, gender, rel_type, sexual_or })
+         onSubmit={()=> {
+            finishRegister({...values.values })
             history.push('/swipingpage')
          }}
         >
@@ -113,15 +87,11 @@ const marks = [
           </div>
            <h2>Age</h2>
           <div className={formSection}>
-           
-            <Slider
-              defaultValue={18}
-              getAriaValueText={valuetext}
-              aria-labelledby="discrete-slider-custom"
-              step={1}
-              valueLabelDisplay="auto"
-              marks={marks}
+           <CustomTextField
+              name="age"
+              placeholder="Age"
             />
+            
           </div>
           <div className={formSection}>
             <CustomTextField
