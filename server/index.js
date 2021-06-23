@@ -65,7 +65,7 @@ app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.get('/auth/logout', authCtrl.logout)
 app.get('/auth/user', authCtrl.getUser)
-app.put('/auth/finishregister', authCtrl.finishRegister)
+app.put('/auth/finishRegister', authCtrl.finishRegister)
 
 //matches endpoints
 app.post('/match/add', matchCtrl.addToMatches)
