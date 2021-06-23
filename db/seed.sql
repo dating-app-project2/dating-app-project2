@@ -27,7 +27,7 @@ CREATE TABLE users(
     gender VARCHAR(200) DEFAULT NULL,
     rel_type VARCHAR(200) DEFAULT NULL,
     sexual_or VARCHAR(200) DEFAULT NULL,
-    profile_content INT REFERENCES pics_vids(id)
+    pics_vids INT REFERENCES pics_vids(id)
 );
 
 CREATE TABLE requests(
