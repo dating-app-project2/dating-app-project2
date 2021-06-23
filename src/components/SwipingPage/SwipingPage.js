@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
     },
 })
 
-function SwipingPage() {
+export default function SwipingPage() {
     const {SwipingPage} = useStyles()
 
   return (
@@ -18,5 +18,5 @@ function SwipingPage() {
       <Cards/>
       <SwipeButtons/>
     </div>
-  );
-export default SwipingPage;
+  )};
+  
