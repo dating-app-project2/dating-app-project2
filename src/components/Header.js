@@ -130,8 +130,6 @@ const Header = ({user, setUser, history, location}) => {
             size={50}
             onClick={() => history.push("/about")}
           />
-
-
           {location.pathname === "/login" ? (
             <button
               color="primary"

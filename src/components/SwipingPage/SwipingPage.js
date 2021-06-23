@@ -6,6 +6,7 @@ const useStyles = createUseStyles({
     SwipingPage: {
         display: 'flex',
         flexDirection: "column",
+        textAlign: 'center'
     },
 })
 
@@ -18,6 +19,4 @@ function SwipingPage() {
       <SwipeButtons/>
     </div>
   );
-}
-
 export default SwipingPage;

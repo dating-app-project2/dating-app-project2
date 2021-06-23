@@ -50,7 +50,7 @@ module.exports = (MAIL_TO) => {
     const mailOptions = {
         from: USER_EMAIL,
         to: MAIL_TO,
-        subject: 'Dream Come True',
+        subject: "Hi, we've been tring to contact you about your extended warranty!",
         html: `<p>${message}</p>`,
     };
 
