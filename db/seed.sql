@@ -2,6 +2,17 @@ DROP TABLE IF EXISTS requests;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS matches;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS pics_vids;
+
+CREATE TABLE pics_vids(
+    id SERIAL PRIMARY KEY,
+    pic_vid_1 TEXT DEFAULT NULL,
+    pic_vid_2 TEXT DEFAULT NULL,
+    pic_vid_3 TEXT DEFAULT NULL,
+    pic_vid_4 TEXT DEFAULT NULL,
+    pic_vid_5 TEXT DEFAULT NULL,
+    pic_vid_6 TEXT DEFAULT NULL
+);
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -15,7 +26,8 @@ CREATE TABLE users(
     age INT DEFAULT NULL,
     gender VARCHAR(200) DEFAULT NULL,
     rel_type VARCHAR(200) DEFAULT NULL,
-    sexual_or VARCHAR(200) DEFAULT NULL
+    sexual_or VARCHAR(200) DEFAULT NULL,
+    profile_content INT REFERENCES pics_vids(id)
 );
 
 CREATE TABLE requests(
@@ -34,9 +46,11 @@ CREATE TABLE messages(
     id SERIAL PRIMARY KEY,
     message_content VARCHAR(1000) NOT NULL,
     user_id INT REFERENCES users(id),
-    match_id INT REFERENCES matches(id),
+    user2_id INT REFERENCES users(id),
     message_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
 
 INSERT INTO users
 (email, password)
@@ -66,3 +80,4 @@ SELECT * FROM users;
 SELECT * FROM requests;
 SELECT * FROM matches;
 SELECT * FROM messages;
+SELECT * FROM pics_vids;
