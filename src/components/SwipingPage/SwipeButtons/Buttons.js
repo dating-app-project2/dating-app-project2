@@ -9,8 +9,8 @@ import  IconButton from '@material-ui/core/IconButton'
 
 const useStyles = createUseStyles({
     swipeButtons: {
-        position: 'fixed',
-        bottom: '10vh',
+        position: 'relative',
+        top: '60vh',
         display: '10vh',
         width: '100%',
         justifyContent: 'space-evenly',

@@ -1,5 +1,5 @@
 import Cards from './Cards/Cards'
-import SwipeButtons from './SwipeButtons/SwipeButtons'
+import SwipeButtons from './SwipeButtons/Buttons'
 import {createUseStyles} from 'react-jss'
 
 const useStyles = createUseStyles({
