@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
   },
 })
 
-const App = ({ getUser, user }) => {
+const App = ({ getUser }) => {
   const { app, sideBarLayout } = useStyles()
   useEffect(() => {
     getUser()
@@ -37,7 +37,6 @@ const App = ({ getUser, user }) => {
     <div className={app}>
       <Header />
       <div className={sideBarLayout}>
-        {/* {JSON.stringify(user)} */}
         {routes}
       </div>
       <ToastContainer />

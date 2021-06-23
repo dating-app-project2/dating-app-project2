@@ -7,26 +7,33 @@ import axios from 'axios'
 import {variables} from '../globalStyles/globalStyles'
 import {AiOutlineLogout} from 'react-icons/ai'
 import {FcAbout} from 'react-icons/fc'
-import {IoMdChatboxes} from 'react-icons/io'
-import {AiFillHome} from 'react-icons/ai'
+import {IconButton} from '@material-ui/core'
+import ForumIcon from '@material-ui/icons/Forum'
+import PersonIcon from '@material-ui/icons/Person'
+import InfoIcon from '@material-ui/icons/Info';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const {primary, secondary, sand, red} = variables
+const {secondary, sand, red} = variables
 const useStyles = createUseStyles({
-    header: {
-      backgroundColor: primary,
-      display: 'flex',
-      width: '100%',
-      height: '10vh',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    nav: {
-      display: 'flex',
-      width: '50%',
-      justifyContent: 'space-around',
-      alignItems: 'center'
-    },
-    icons:{
+  header:{
+    backgroundColor: primary,
+    display: 'flex',
+    width: '100%',
+    height: '10vh',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    zIndex: '100',
+    borderBottom: '1px solid #f9f9f9'
+  },
+  headerIcon: {
+    padding: '20px'
+  },
+  headerLogo: {
+    objectFit: "contain",
+    height: '40px',
+    backgroundColor: 'primary'
+  },
+   icons:{
       color: sand,
       height: '100px',
       width: '100px',
@@ -34,30 +41,27 @@ const useStyles = createUseStyles({
           color: secondary
         }
     },
-    questionIcon:{
-      color: red,
-      borderRadius: '50%',
+    nav: {
+      display: 'flex',
+      width: '50%',
+      justifyContent: 'space-around',
+      alignItems: 'center'
+    },
+    headerIcon: {
+    padding: '20px',
+    color: red,
         "&hover":{
           backgroundColor: secondary
         }
     },
-    chatIcon:{
-      color: red,
-        "&hover":{
-          backgroundColor: secondary
-        }
-    },
-    homeIcon:{
-      color: red,
-        "&hover":{
-          backgroundColor: secondary,
-          'cursor': 'pointer'
-        }
-    }
+    headerLogo: {
+      objectFit: "contain",
+      height: '40px'
+  }
 })
 
 const Header = ({user, setUser, history, location}) => {
-    const {header, nav, icons, questionIcon, chatIcon, homeIcon} = useStyles()
+    const {header, nav, icons, questionIcon, headerIcon, headerLogo} = useStyles()
     const logout = () => {
         axios.post('/auth/logout')
         .then(()=> 
@@ -82,32 +86,43 @@ const Header = ({user, setUser, history, location}) => {
       location.pathname !== "/register" &&
       user &&
       user.id ? (
-        <nav className={nav}>
-          <AiFillHome
-            className={homeIcon}
-            size={50}
-            onClick={() => history.push("/swipingPage")}
-          />
-          <IoMdChatboxes
-            className={chatIcon}
-            size={50}
-            onClick={() => history.push("/chat")}
-          />
-          <FcAbout
+          <nav className={nav}>
+          <IconButton>
+            <PersonIcon 
+            fontSize="large" 
+            className={headerIcon}
+            />
+          </IconButton>
+          <IconButton>
+            <img 
+               className={headerLogo}
+               src='https://1000logos.net/wp-content/uploads/2018/07/tinder-emblem.jpg'
+               alt="Tinder Logo"
+               onClick={() => history.push("/swipingpage")}
+            />
+          </IconButton>
+          <IconButton>
+            <ForumIcon 
+              fontSize='large' 
+              className={headerIcon}
+              onClick={() => history.push("/chat")}
+            />
+          </IconButton>
+          <InfoIcon
             className={questionIcon}
             size={50}
             onClick={() => history.push("/about")}
           />
          
-          <AiOutlineLogout
+          <ExitToAppIcon
             className={icons}
-            size={50}
+            size={20}
             onClick={() => {
               logout()
               history.push("/login")
             }}
           />
-        </nav>
+          </nav>
       ) : (
         <nav className={nav}>
           <FcAbout
@@ -115,7 +130,6 @@ const Header = ({user, setUser, history, location}) => {
             size={50}
             onClick={() => history.push("/about")}
           />
-
           {location.pathname === "/login" ? (
             <button
               color="primary"
@@ -134,8 +148,7 @@ const Header = ({user, setUser, history, location}) => {
         </nav>
       )}
     </header>
-  )
-}
+  )}
 
 const mapStateToProps = state => {
     const {user} = state.auth
@@ -147,53 +160,3 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header))
-
-
-// import React from 'react'
-// import {createUseStyles} from 'react-jss'
-// import PersonIcon from '@material-ui/icons/Person';
-// import { IconButton } from '@material-ui/core';
-// import ForumIcon from '@material-ui/icons/Forum';
-
-
-// const useStyles = createUseStyles({
-//   header:{
-//     display: 'flex',
-//     alignItems: 'center',
-//     justifyContent: 'space-between',
-//     zIndex: '100',
-//     borderBottom: '1px solid #f9f9f9'
-//   },
-//   headerIcon: {
-//     padding: '20px'
-//   },
-//   headerLogo: {
-//     objectFit: "contain",
-//     height: '40px'
-//   }
-// })
-
-// function Header(){
-//     const {headerIcon, headerLogo, header} = useStyles
-//   return (
-//     <div className={header}>
-//       <h1>Tinder clone!</h1>
-//       <IconButton>
-//           <PersonIcon fontSize="large" className={headerIcon}/>
-//       </IconButton>
-//       <img 
-//         className={headerLogo}
-//         src='https://toppng.com/uploads/preview/tinder-logo-11545685525kmredhqlma.png'
-//         alt="Tinder Logo"/>
-//       {/* Header
-//       Tinder cards
-//       swipe buttons */}
-//       <IconButton>
-//         <ForumIcon fontSize='large' className={headerIcon}/>
-//       </IconButton>
-//     </div>
-//   );
-
-// }
-
-// export default Header

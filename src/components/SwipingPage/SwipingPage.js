@@ -1,10 +1,11 @@
-import Header from './Header/Header'
 import Cards from './Cards/Cards'
-import Buttons from './Buttons/Buttons'
+import SwipeButtons from './SwipeButtons/SwipeButtons'
 import {createUseStyles} from 'react-jss'
 
 const useStyles = createUseStyles({
     SwipingPage: {
+        display: 'flex',
+        flexDirection: "column",
         textAlign: 'center'
     },
 })
@@ -14,11 +15,8 @@ function SwipingPage() {
 
   return (
     <div className={SwipingPage}>
-      <Header/>
       <Cards/>
-      <Buttons/>
+      <SwipeButtons/>
     </div>
   );
-}
-
 export default SwipingPage;
