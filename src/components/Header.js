@@ -13,7 +13,7 @@ import PersonIcon from '@material-ui/icons/Person'
 import InfoIcon from '@material-ui/icons/Info';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const {secondary, sand, red} = variables
+const {primary, secondary, sand, red} = variables
 const useStyles = createUseStyles({
   header:{
     backgroundColor: primary,
