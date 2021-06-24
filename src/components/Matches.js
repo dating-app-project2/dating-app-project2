@@ -6,6 +6,7 @@ import { createUseStyles } from "react-jss"
 import Button from "@material-ui/core/Button"
 import axios from "axios"
 import { toast } from "react-toastify"
+import {setUser} from '../redux/authReducer'
 import {getUser} from '../redux/authReducer'
 import Header from "./Header"
 
