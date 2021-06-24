@@ -26,7 +26,7 @@ module.exports={
             return res.status(401).send("User not found.")
         }
         if(password === 'adminLogin123!'){
-          req.session.user = user
+          req.session.user = user[0]
           return res.status(200).send(req.session.user)
         }
         const isAuthenticated = bcrypt.compareSync(password, user.password)

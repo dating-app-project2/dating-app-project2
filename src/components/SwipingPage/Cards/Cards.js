@@ -71,15 +71,16 @@ function Cards ({user}) {
                  {people.map((person)=> (
                 <TinderCard
                 className={swipe}
-                key={person.first}
+                key={person.id}
                 preventSwipe={["up", "down"]}
                 onSwipe={(dir)=> swiped(dir, person.first)}
                 onCardLeftScreen={()=>outOfFrame(person.first)}>
                     <div
-                    style={{backgroundImage: `url(${person.url})`
+                    style={{backgroundImage: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe_W6S2_Navkn8juCmGvny5FzStxlsUMYQm-6cRh_2N-v1ctUY`
                     }}className ={card}>
                         <h3>{person.first}</h3>
                         <h4>{person.age}</h4>
+                        <p>{person.bio}</p>
                     </div>
                 </TinderCard>
                  ))}
@@ -89,7 +90,7 @@ function Cards ({user}) {
 }
 
 const mapStateToProps = state => {
-  const { user } = state.authReducer
+  const { user } = state.auth
   return { user }
 }
 
