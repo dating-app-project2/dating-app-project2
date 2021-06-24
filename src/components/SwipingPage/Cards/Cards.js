@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useState} from 'react'
 import {createUseStyles} from 'react-jss'
 import TinderCard from 'react-tinder-card'
@@ -49,15 +50,15 @@ const outOfFrame = (name) => {
     console.log(name+ ' left the screen!');
 }
 
-function Cards () {
-    const [people, setPeople] = useState([{
-        name: 'Daddy Musk',
-        url: 'https://static.theceomagazine.net/wp-content/uploads/2018/10/15093202/elon-musk.jpg'
-    },
-    {
-        name: 'Jaden Tripp',
-        url: 'https://i1.sndcdn.com/avatars-000290317176-o5pvw6-t240x240.jpg'
-    }])
+function Cards ({user}) {
+    const [people, setPeople] = useState([])
+
+    useEffect(()=>{
+            axios.get(`/request/received/${user.id}`).then(res=> 
+            setPeople(res.data))
+    }, [])
+
+    //render cards where the receiver id is = to the userid
     const {Cards, Cards__cardContainer, card, swipe} = useStyles()
     return(
         <div className={Cards}>
