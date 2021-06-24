@@ -10,10 +10,13 @@ const initialState = {
     phone_num2: '',
     first: '',
     last: '',
+    password: '',
     age: '',
     gender: '',
     rel_type: '',
-    sexual_or: ''
+    sexual_or: '',
+    bio: '',
+    url: ''
     },
     loading: false,
     errorMessage: ''

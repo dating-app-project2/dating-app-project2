@@ -55,12 +55,17 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
   return (
    <Formik
         initialValues={{
-            first: '',
-            last: '',
-            age: '',
-            gender: '',
-            rel_type: '',
-            sexual_or: ''
+            phone_area: '', 
+            phone_num1: '', 
+            phone_num2: '', 
+            first: '', 
+            last: '', 
+            age: '', 
+            gender: '', 
+            rel_type: '', 
+            sexual_or: '', 
+            bio: '', 
+            url: ''
         }}
         validationSchema={finishRegisterSchema}>
           
@@ -73,6 +78,17 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
             history.push('/swipingPage')
          }}
         >
+          <div className={formSection}>
+            <CustomTextField
+            name="phone_area"
+            placeholder="Area code"/>
+            <CustomTextField
+            name="phone_num1"
+            placeholder="phone"/>
+            <CustomTextField
+            name="phone_num2"
+            placeholder="phone"/>
+          </div>
           <div className={formSection}>
             <CustomTextField
               name="first"
@@ -107,6 +123,16 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
               placeholder="Sexual Orientation"
             />
           </div>
+          <div className={formSection}>
+          <CustomTextField
+            name="bio"
+            placeholder="Bio"/>
+          </div>
+          <div className={formSection}>
+             <CustomTextField
+              name="url"
+              placeholder="Picture url"/>   
+          </div>
 
           <Button
             disabled={isSubmitting}
@@ -114,11 +140,7 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
             variant="contained"
             color="secondary"
           >
-
-          Submit
-
             Finish registration
-
           </Button>
         </Form>
       )}
