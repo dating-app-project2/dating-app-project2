@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button"
 import axios from "axios"
 import { toast } from "react-toastify"
 import {setUser} from '../redux/authReducer'
+import {getUser} from '../redux/authReducer'
 import Header from "./Header"
 
 const useStyles = createUseStyles({
@@ -31,15 +32,15 @@ const useStyles = createUseStyles({
     }
   })
 
-const Matches = () => {
+const Matches = ({user}) => {
     const { messagesBox } = useStyles()
     const { matches } = useStyles()
     const [allMatches, setAllMatches] = useState([])
 
 
     useEffect(() => {
-        axios.get(`/match/3`)
-        // {user && axios.get(`/match/all/${user.id}`)
+        axios.get(`/match/all/3`)
+        // axios.get(`/match/all/${user.id}`)
         .then(res => {
             setAllMatches(res.data)
         })
@@ -55,6 +56,7 @@ const Matches = () => {
 
                 {allMatches.map((match) => {
                             if (match.user_2 != 3) {
+                            // if (match.user_2 != user.id) {
                                 return <div>
                                 {match.user_2}
                             </div>
@@ -76,4 +78,14 @@ const Matches = () => {
     )
 }
 
-export default Matches
+const mapStateToProps = state => {
+  const { user } = state.auth
+  return { user }
+}
+
+const mapDispatchToProps = {
+  getUser
+}
+
+export default  connect(mapStateToProps, mapDispatchToProps)(Matches)
+// export default Matches
