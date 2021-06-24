@@ -5,6 +5,7 @@ import TinderCard from 'react-tinder-card'
 import { useEffect } from 'react';
 import { getUser } from '../../../redux/authReducer'
 import {connect} from 'react-redux'
+import { setMatches } from '../../../redux/matchReducer'
 
 const useStyles = createUseStyles({
     Cards:{
@@ -43,17 +44,24 @@ const useStyles = createUseStyles({
     
 })
 
-const swiped = (direction, nameToDelete) => {
-    console.log('removing'+ nameToDelete);
-    console.log('swiped '+ direction)
-    //delete from requests table 
-};
+
 
 const outOfFrame = (name) => {
     console.log(name+ ' left the screen!');
 }
 
-function Cards ({user}) {
+function Cards (props) {
+    console.log(props)
+    const {user, setMatches, matches}= props
+    const swiped = (direction, user2) => {
+        // if(direction==='right'){
+        // axios.post('/match/add', body)
+        // .then(results => {
+        //    setMatches(results.data) 
+        // })
+        // .catch(err=> console.log(err))
+        // }
+    };
     const [people, setPeople] = useState([])
 
     useEffect(()=>{
@@ -73,7 +81,7 @@ function Cards ({user}) {
                 className={swipe}
                 key={person.id}
                 preventSwipe={["up", "down"]}
-                onSwipe={(dir)=> swiped(dir, person.first)}
+                onSwipe={(dir)=> swiped(dir, person.id)}
                 onCardLeftScreen={()=>outOfFrame(person.first)}>
                     <div
                     style={{backgroundImage: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe_W6S2_Navkn8juCmGvny5FzStxlsUMYQm-6cRh_2N-v1ctUY`
@@ -91,11 +99,12 @@ function Cards ({user}) {
 
 const mapStateToProps = state => {
   const { user } = state.auth
-  return { user }
+  const { matches } = state.match
+  return { user, matches }
 }
 
 const mapDispatchToProps = {
-  getUser
+  getUser, setMatches
 }
 
 export default  connect(mapStateToProps, mapDispatchToProps)(Cards)

@@ -17,22 +17,14 @@ module.exports={
         try{
         const db = req.app.get('db')
         const {user_1} = req.params
-        try{
-            const firstArr = await db.match.get_all_matches(user_1)
-            const secondArr = await db.match.get_all_matches2(user_1)
-            const bigArr = [...firstArr, ...secondArr]
-            return res.status(200).send(bigArr)
-        }
+        const allMatches = await db.match.get_all_matches(user_1)
+        return res.status(200).send(allMatches)}
         catch(err){
             console.log(err)
             return res.status(500).send(`Unable to get all matches for ${user_1}`)
         }
-        
     }
-        catch{
-            res.status(500).send(err)
-        }
-    },
+        ,
     getOneMatch: (req, res) => {
         const db = req.app.get('db')
         const {id} = req.params
