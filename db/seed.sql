@@ -2,17 +2,14 @@ DROP TABLE IF EXISTS requests;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS matches;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS pics_vids;
+-- DROP TABLE IF EXISTS pictures;
 
-CREATE TABLE pics_vids(
-    id SERIAL PRIMARY KEY,
-    pic_vid_1 TEXT DEFAULT NULL,
-    pic_vid_2 TEXT DEFAULT NULL,
-    pic_vid_3 TEXT DEFAULT NULL,
-    pic_vid_4 TEXT DEFAULT NULL,
-    pic_vid_5 TEXT DEFAULT NULL,
-    pic_vid_6 TEXT DEFAULT NULL
-);
+-- CREATE TABLE pictures(
+--    id SERIAL PRIMARY KEY,
+--    user_id INT REFERENCES users(id),
+--    url TEXT DEFAULT NULL
+-- );
+
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -27,8 +24,8 @@ CREATE TABLE users(
     gender VARCHAR(200) DEFAULT NULL,
     rel_type VARCHAR(200) DEFAULT NULL,
     sexual_or VARCHAR(200) DEFAULT NULL,
-    pics_vids INT REFERENCES pics_vids(id),
     bio VARCHAR(450) DEFAULT NULL,
+    url TEXT DEFAULT NULL
 );
 
 CREATE TABLE requests(
@@ -46,19 +43,19 @@ CREATE TABLE matches(
 CREATE TABLE messages(
     id SERIAL PRIMARY KEY,
     message_content VARCHAR(1000) NOT NULL,
-    user_id INT REFERENCES users(id),
-    user2_id INT REFERENCES users(id),
+    user1 INT REFERENCES users(id),
+    user2 INT REFERENCES users(id),
     message_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
 
 INSERT INTO users
-(email, password)
+(email, phone_area, phone_num1, phone_num2, first, last, password, age, gender, rel_type, sexual_or, bio, url)
 VALUES 
-('jadenitripp@gmail.com', 'adminLogin123!'),
-('joshuadreyleavitt@gmail.com', 'adminLogin123!'),
-('danielboesch20@gmail.com', 'adminLogin123!');
+('jadenitripp@gmail.com', '801', '362', '8766', 'Jaden', 'Tripp', 'adminLogin123!', '22', 'Male', 'Hookup', 'Bisexual','Let''s get it started it here', 'https://ibb.co/6FvD8RM'),
+('joshuadreyleavitt@gmail.com', '385', '685', '8434', 'Joshua', 'Leavitt', 'adminLogin123!', '21', 'Male', 'Hookup', 'Straight', 'Swipe and lets do something', 'https://ibb.co/BLZvd8s'),
+('danielboesch20@gmail.com', '440', '749', '4361', 'Daniel', 'Boesch', 'adminLogin123!', '25', 'Male', 'Taken', 'Straight', 'Oh I have no idea', 'https://ibb.co/kK9g6pp%27');
 
 INSERT INTO requests
 (sender_id, receiver_id)
@@ -81,4 +78,4 @@ SELECT * FROM users;
 SELECT * FROM requests;
 SELECT * FROM matches;
 SELECT * FROM messages;
-SELECT * FROM pics_vids;
+-- SELECT * FROM pictures;

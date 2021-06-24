@@ -3,6 +3,11 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 
+const userSocketIds  = {}
+//user_id: socket.id
+
+// userSocketIds[id]
+
 
 const {
   CONNECTION_STRING, 
@@ -50,6 +55,7 @@ console.log(`Server listening on ${SERVER_PORT}`)))
      socket.on('sendMessage', (body) => 
     //  msgCtrl.sendMessage(db, io, socket, body, callback)
     {
+      
       console.log(body)
       io.emit('relay-message', body)
     }
