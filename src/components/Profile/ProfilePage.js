@@ -35,6 +35,9 @@ const useStyles = createUseStyles({
     }
 })
 
+//profile page should allow user to input 6 profile pictures, a bio, their phone number, and edit any of the other information they have on their users table. This is also where the user will be able to set their interests. 
+//s3 for the profile pictures. we will be inserting into the pictures table to the user. 
+// we will use an update sql to update the users table with a phone number, an id to the pictures table, 
 
 const ProfilePage = ({ history, setUser }) => {
 

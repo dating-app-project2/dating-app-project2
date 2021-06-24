@@ -1,6 +1,7 @@
 import Cards from './Cards/Cards'
-import SwipeButtons from './SwipeButtons/SwipeButtons'
+import SwipeButtons from './Buttons/Buttons'
 import {createUseStyles} from 'react-jss'
+
 
 const useStyles = createUseStyles({
     SwipingPage: {
@@ -11,6 +12,8 @@ const useStyles = createUseStyles({
 })
 
 export default function SwipingPage() {
+ 
+    
     const {SwipingPage} = useStyles()
 
   return (

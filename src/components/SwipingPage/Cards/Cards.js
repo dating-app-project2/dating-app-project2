@@ -1,6 +1,10 @@
+import axios from 'axios';
 import React, {useState} from 'react'
 import {createUseStyles} from 'react-jss'
 import TinderCard from 'react-tinder-card'
+import { useEffect } from 'react';
+import { getUser } from '../../../redux/authReducer'
+import {connect} from 'react-redux'
 
 const useStyles = createUseStyles({
     Cards:{
@@ -49,15 +53,17 @@ const outOfFrame = (name) => {
     console.log(name+ ' left the screen!');
 }
 
-function Cards () {
-    const [people, setPeople] = useState([{
-        name: 'Daddy Musk',
-        url: 'https://static.theceomagazine.net/wp-content/uploads/2018/10/15093202/elon-musk.jpg'
-    },
-    {
-        name: 'Jaden Tripp',
-        url: 'https://i1.sndcdn.com/avatars-000290317176-o5pvw6-t240x240.jpg'
-    }])
+function Cards ({user}) {
+    const [people, setPeople] = useState([])
+
+    useEffect(()=>{
+            console.log(user)
+            axios.get(`/request/received/${user.id}`)
+            .then(res=> setPeople(res.data))
+            .catch(err=> console.log(err))
+    }, [])
+
+    //render cards where the receiver id is = to the userid
     const {Cards, Cards__cardContainer, card, swipe} = useStyles()
     return(
         <div className={Cards}>
@@ -65,14 +71,15 @@ function Cards () {
                  {people.map((person)=> (
                 <TinderCard
                 className={swipe}
-                key={person.name}
+                key={person.first}
                 preventSwipe={["up", "down"]}
-                onSwipe={(dir)=> swiped(dir, person.name)}
-                onCardLeftScreen={()=>outOfFrame(person.name)}>
+                onSwipe={(dir)=> swiped(dir, person.first)}
+                onCardLeftScreen={()=>outOfFrame(person.first)}>
                     <div
                     style={{backgroundImage: `url(${person.url})`
                     }}className ={card}>
-                        <h3>{person.name}</h3>
+                        <h3>{person.first}</h3>
+                        <h4>{person.age}</h4>
                     </div>
                 </TinderCard>
                  ))}
@@ -81,4 +88,13 @@ function Cards () {
     )
 }
 
-export default Cards
+const mapStateToProps = state => {
+  const { user } = state.authReducer
+  return { user }
+}
+
+const mapDispatchToProps = {
+  getUser
+}
+
+export default  connect(mapStateToProps, mapDispatchToProps)(Cards)

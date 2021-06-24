@@ -21,7 +21,7 @@ module.exports={
     login: async (req,res) => {
         const db = req.app.get('db')
         const {email,  password} = req.body
-        const [user] = await db.auth.get_user_by_email(email)
+        const user = await db.auth.get_user_by_email(email)
         if(!user){
             return res.status(401).send("User not found.")
         }
@@ -34,7 +34,7 @@ module.exports={
           return res.status(403).send('Password incorrect.')
         }
          delete user.hash
-         req.session.user = user  
+         req.session.user = user[0]  
         return res.status(200).send(req.session.user)
     },
     logout: async (req,res)=>{
@@ -49,12 +49,12 @@ module.exports={
     }},
     finishRegister: async (req, res) => {
       const db = req.app.get('db')
-      const {first, last, age, gender, rel_type, sexual_or} = req.body
+      const {phone_area, phone_num1, phone_num2, first, last, age, gender, rel_type, sexual_or, bio, url} = req.body
       console.log(req.body)
       console.log(req.params)
     
       const {id} = req.session.user
-      const [finishedUser] = await db.auth.finish_register( id, first, last, age, gender, rel_type, sexual_or )
+      const [finishedUser] = await db.auth.finish_register(id, phone_area, phone_num1, phone_num2, first, last, age, gender, rel_type, sexual_or, bio, url)
       console.log(finishedUser)
       if(!finishedUser){
         return res.status(500).send('User creation unable to finish')

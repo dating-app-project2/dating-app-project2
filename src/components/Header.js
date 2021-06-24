@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
     width: '100%',
     height: '10vh',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     zIndex: '100',
     borderBottom: '1px solid #f9f9f9'
   },
@@ -96,7 +96,7 @@ const Header = ({user, setUser, history, location}) => {
           <IconButton>
             <img 
                className={headerLogo}
-               src='https://1000logos.net/wp-content/uploads/2018/07/tinder-emblem.jpg'
+               src='https://www.pngfind.com/pngs/m/175-1753641_tinder-logo-icon-free-download-png-transparent-tinder.png'
                alt="Tinder Logo"
                onClick={() => history.push("/swipingpage")}
             />
@@ -108,13 +108,17 @@ const Header = ({user, setUser, history, location}) => {
               onClick={() => history.push("/chat")}
             />
           </IconButton>
+          <IconButton>
           <InfoIcon
+            fontSize="large"
             className={questionIcon}
             size={50}
             onClick={() => history.push("/about")}
           />
-         
+          </IconButton>
+         <IconButton>
           <ExitToAppIcon
+            fontSize="large"
             className={icons}
             size={20}
             onClick={() => {
@@ -122,6 +126,7 @@ const Header = ({user, setUser, history, location}) => {
               history.push("/login")
             }}
           />
+          </IconButton>
           </nav>
       ) : (
         <nav className={nav}>
@@ -142,7 +147,7 @@ const Header = ({user, setUser, history, location}) => {
               color="primary"
               onClick={() => history.push("/login")}
             >
-              Login
+              Sign In
             </button>
           )}
         </nav>
