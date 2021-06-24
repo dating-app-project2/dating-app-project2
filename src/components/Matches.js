@@ -38,7 +38,7 @@ const Matches = () => {
 
 
     useEffect(() => {
-        axios.get(`/match/3`)
+        axios.get(`/match/all/3`)
         // {user && axios.get(`/match/all/${user.id}`)
         .then(res => {
             setAllMatches(res.data)
