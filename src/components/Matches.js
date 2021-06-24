@@ -26,9 +26,13 @@ const useStyles = createUseStyles({
       display: "flex",
     //   justifyContent: "space-between",
       flexDirection: "row",
+      justifyContent: 'space-between',
       alignItems: "flex-start",
       borderBottom: "1px solid black",
-      backgroundColor: "white"
+      backgroundColor: "white",
+      overflow: 'auto'
+    },
+    match:{
     }
   })
 
@@ -39,12 +43,10 @@ const Matches = ({user}) => {
 
 
     useEffect(() => {
-        axios.get(`/match/all/3`)
-
-        .then(res => {
-            setAllMatches(res.data)
-        })
-        .catch(err => console.log(err))
+        {user && 
+        axios.get(`/match/all/${user.id}`)
+        .then(res => {setAllMatches(res.data)})
+        .catch(err => console.log(err))}
     }, [])
 
     
@@ -55,15 +57,22 @@ const Matches = ({user}) => {
                 <div className={matches}>
 
                 {allMatches.map((match) => {
-                            if (match.user_2 != 3) {
-                            // if (match.user_2 != user.id) {
-                                return <div>
-                                {match.user_2}
-                            </div>
+                            if (match.user_2 != user.id) {
+                                return (
+                                <div key={match.user_2}
+                                className={match}>
+                                   <img
+                                    src={match.url}/>
+                                    {match.first}
+                                </div>)
                             }else{
-                                return <div>
-                                {match.user_1}
-                            </div>
+                                return (
+                               <div key={match.user_1}
+                                className={match}>
+                                <img
+                                src={match.url}/>
+                                {match.first}
+                            </div>)
 
                             }
                         
@@ -80,12 +89,11 @@ const Matches = ({user}) => {
 
 const mapStateToProps = state => {
   const { user } = state.auth
-  return { user }
+  return {user}
 }
 
 const mapDispatchToProps = {
   getUser
 }
 
-export default  connect(mapStateToProps, mapDispatchToProps)(Matches)
-// export default Matches
+export default connect(mapStateToProps, mapDispatchToProps)(Matches)

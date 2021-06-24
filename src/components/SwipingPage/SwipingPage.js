@@ -13,8 +13,7 @@ const useStyles = createUseStyles({
 
 export default function SwipingPage() {
  
-    
-    const {SwipingPage} = useStyles()
+  const {SwipingPage} = useStyles()
 
   return (
     <div className={SwipingPage}>

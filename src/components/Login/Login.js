@@ -27,7 +27,7 @@ const Login = ({ history, setUser, password}) => {
       }
       console.log(results.data)
       setUser(results.data)
-     history.push('/chat')
+     history.push('/matches')
     }).catch(err => toast.error(err))
   }
   return (

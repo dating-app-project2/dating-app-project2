@@ -2,7 +2,8 @@ const actionTypes = {
 LOGOUT: "LOGOUT",
 GET_USER: "GET_USER",
 AUTHENTICATION: "AUTHENTICATION",
-SET_USER: "SET_USER"
+SET_USER: "SET_USER",
+SET_MATCHES: "SET_MATCHES"
 };
 
 export default actionTypes;
