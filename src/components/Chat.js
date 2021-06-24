@@ -9,8 +9,8 @@ import { toast } from "react-toastify"
 
 const useStyles = createUseStyles({
     chatSectionBox: {
-      width: "400px",
-      height: "500px",
+      width: "450px",
+      height: "600px",
       display: "flex",
       justifyContent: "space-between",
       flexDirection: "column",
@@ -18,7 +18,7 @@ const useStyles = createUseStyles({
       backgroundColor: "white"
     },
     chatSection: {
-      width: "400px",
+      width: "450px",
       height: "85%",
       display: "flex",
       justifyContent: "flex-start",
@@ -33,10 +33,15 @@ const useStyles = createUseStyles({
       width: "400px",
       height: "15%",
       display: "flex",
-      justifyContent: "space-around",
+      justifyContent: "space-between",
       alignItems: "center",
       backgroundColor: "white",
       flexDirection: "row",
+      marginRight: "20px"
+
+    },
+    inputBox: {
+      width: "300px",
 
     }
   })
@@ -50,6 +55,7 @@ const Chat = ({user, match, history}) => {
 
     const { chatSectionBox } = useStyles()
     const { chatSection } = useStyles()
+    const { inputBox } = useStyles()
     const { inputAndBtn } = useStyles()
 
 
@@ -142,6 +148,7 @@ const Chat = ({user, match, history}) => {
                 <div className={inputAndBtn}>
                   <TextField
                       value={message}
+                      className={inputBox}
                       placeholder="send message"
                       onChange={e => setMessage(e.target.value)}
                       onKeyPress={e => (e.key === "Enter" ? sendMessage(e) : null)}
