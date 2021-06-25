@@ -14,10 +14,10 @@ module.exports={
         .catch(err => res.status(500).send(err))
     },
     getAllMatches: async (req, res) => {
-        try{
         const db = req.app.get('db')
         const {user_1} = req.params
-        const allMatches = await db.match.get_all_matches(user_1)
+        try{
+        const allMatches = await db.match.get_all_matches(+user_1)
         return res.status(200).send(allMatches)}
         catch(err){
             console.log(err)
