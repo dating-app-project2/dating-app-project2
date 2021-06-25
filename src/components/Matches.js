@@ -33,18 +33,36 @@ const useStyles = createUseStyles({
       overflow: 'auto',
       
     },
-    match:{
+    matchImg:{
+      height: '90px'
 
     },
-    matchImg:{
-      width: '90px'
+    matchImgBox:{
+      width: '70px',
+      height: '70px',
+      borderRadius: "50%",
+      overflow: "hidden",
+      display: "flex",
+      alignItems: "center",
+      // backgroundColor: "blue",
+    },
+    eachMatch:{
+      width: '90px',
+      height: '100px',
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      // backgroundColor: "blue",
     }
   })
 
 const Matches = ({user}) => {
     const { messagesBox } = useStyles()
     const { matches } = useStyles()
+    const { eachMatch } = useStyles()
     const { matchImg } = useStyles()
+    const { matchImgBox } = useStyles()
     const [allMatches, setAllMatches] = useState([])
 
 
@@ -69,9 +87,12 @@ const Matches = ({user}) => {
                                 <div key={match.user_2}
                                 className={match}>
                                   {console.log(match)}
-                                   <img
-                                    src={match.url} className={matchImg}/>
+                                  <div className={eachMatch}>
+                                    <div className={matchImgBox}><img
+                                    src={match.url} className={matchImg}/></div>
                                     {match.first}
+                                  </div>
+                                   
                                 </div>)
                             }
 
