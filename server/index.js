@@ -18,7 +18,7 @@ const {
 const authCtrl = require('./controllers/authController')
 const reqCtrl = require('./controllers/requestsController')
 const matchCtrl = require('./controllers/matchesController');
-const msgCtrl = require('./controllers/messagesController');
+const userCtrl = require('./controllers/usersController')
 
 const app = express();
 
@@ -86,4 +86,5 @@ app.delete('/request/:id', reqCtrl.deleteRequest)
 app.get('/request/sent/:sender_id', reqCtrl.getSentRequests)
 app.get('/request/received/:receiver_id', reqCtrl.getReceivedRequests)
 
-//messages are being managed in io. Scroll up for sockets info
+//user endpoints 
+app.get('/user/all/:userId', userCtrl.getUsers)
