@@ -1,10 +1,14 @@
 module.exports={
     addToMatches: (req, res) => {
         const db = req.app.get('db')
-        const {user_1, user_2} = req.body
-        db.match.add_match(user_1, user_2)
-        .then(() => res.sendStatus(200))
-        .catch(err => res.status(500).send(err))
+        const {user1, user2} = req.body
+        console.log(req.body)
+        console.log(user2)
+        db.match.add_match(+user1, +user2)
+        .then((matches) => res.status(200).send(matches))
+        .catch(err => {
+            console.log(err)
+            res.status(500).send(err)})
     },
     removeFromMatches: (req, res) => {
         const db = req.app.get('db')
