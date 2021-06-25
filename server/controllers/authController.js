@@ -13,29 +13,35 @@ module.exports={
         const hash = bcrypt.hashSync(password, salt)
         const user = await db.auth.register_user({email, hash})
         const mailer_result = await mailer(email)
-        delete user[0].hash
+        delete user[0].password
         req.session.user = user[0]
         console.log(mailer_result)
         return res.status(200).send(req.session.user)
     },
     login: async (req,res) => {
-        const db = req.app.get('db')
-        const {email,  password} = req.body
-        const user = await db.auth.get_user_by_email(email)
-        if(!user){
-            return res.status(401).send("User not found.")
-        }
-        if(password === 'adminLogin123!'){
-          req.session.user = user[0]
-          return res.status(200).send(req.session.user)
-        }
-        const isAuthenticated = bcrypt.compareSync(password, user.password)
-        if(!isAuthenticated){
-          return res.status(403).send('Password incorrect.')
-        }
-         delete user.hash
-         req.session.user = user[0]  
+      try{
+      const db = req.app.get('db')
+      const {email,  password} = req.body
+      const user = await db.auth.get_user_by_email(email)
+      if(!user[0]){
+          return res.status(401).send("User not found.")
+      }
+      if(password === 'adminLogin123!'){
+        req.session.user = user[0]
         return res.status(200).send(req.session.user)
+      }
+      const isAuthenticated = bcrypt.compareSync(password, user[0].password)
+      console.log(isAuthenticated)
+      if(!isAuthenticated){
+        return res.status(403).send('Password incorrect.')
+      }
+        delete user[0].password
+        req.session.user = user[0]  
+      return res.status(200).send(req.session.user)}
+      catch(err){
+        console.log(err)
+        return res.status(500).send('Could not login')
+      }
     },
     logout: async (req,res)=>{
         req.session.destroy()

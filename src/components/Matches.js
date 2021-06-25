@@ -26,13 +26,15 @@ const useStyles = createUseStyles({
       display: "flex",
     //   justifyContent: "space-between",
       flexDirection: "row",
-      justifyContent: 'space-between',
+      justifyContent: 'flex-start',
       alignItems: "flex-start",
       borderBottom: "1px solid black",
       backgroundColor: "white",
-      overflow: 'auto'
+      overflow: 'auto',
+      
     },
     match:{
+     
     }
   })
 
@@ -75,10 +77,6 @@ const Matches = ({user}) => {
                             </div>)
 
                             }
-                        
-                    //     return (
-                    // )
-                    // }
             })}
                     
                 </div>

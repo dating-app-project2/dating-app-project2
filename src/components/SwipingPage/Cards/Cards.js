@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { getUser } from '../../../redux/authReducer'
 import {connect} from 'react-redux'
 import { setMatches } from '../../../redux/matchReducer'
+import { DirectionsOutlined } from '@material-ui/icons';
 
 const useStyles = createUseStyles({
     Cards:{
@@ -54,13 +55,14 @@ function Cards (props) {
     console.log(props)
     const {user, setMatches, matches}= props
     const swiped = (direction, user2) => {
-        // if(direction==='right'){
-        // axios.post('/match/add', body)
-        // .then(results => {
-        //    setMatches(results.data) 
-        // })
-        // .catch(err=> console.log(err))
-        // }
+        if(direction==='right'){
+            console.log(user2)
+        axios.post('/match/add', [user.id, user2])
+        .then(results => {
+           setMatches(results.data) 
+        })
+        .catch(err=> console.log(err))
+        }
     };
     const [people, setPeople] = useState([])
 
