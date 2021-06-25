@@ -22,13 +22,13 @@ const useStyles = createUseStyles({
     },
     matches: {
       width: "450px",
-      height: "100px",
+      height: "120px",
       display: "flex",
     //   justifyContent: "space-between",
       flexDirection: "row",
       justifyContent: 'flex-start',
       alignItems: "flex-start",
-      borderBottom: "1px solid black",
+      borderBottom: "2px solid black",
       backgroundColor: "white",
       overflow: 'auto',
       
@@ -54,13 +54,54 @@ const useStyles = createUseStyles({
       justifyContent: "center",
       alignItems: "center",
       // backgroundColor: "blue",
+    },
+    eachMatchChat:{
+      width: '190px',
+      height: '100px',
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      // backgroundColor: "blue",
+      marginLeft: "10px"
+    },
+    messagesSec:{
+      width: '450px',
+      height: '499px',
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      // backgroundColor: "green",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      overflow: "auto"
+    },
+    eachMessage:{
+      width: '434px',
+      minHeight: '99px',
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "flex-start",
+      // backgroundColor: "blue",
+      borderBottom: "1px solid rgba(0, 0, 0, 0.5);"
+    },
+    matchNameChat:{
+      marginTop: "-30px",
+      marginLeft: "20px",
+      // backgroundColor: "blue",
     }
   })
 
 const Matches = ({user}) => {
     const { messagesBox } = useStyles()
+    const { messagesSec } = useStyles()
+    const { eachMessage } = useStyles()
     const { matches } = useStyles()
     const { eachMatch } = useStyles()
+    const { eachMatchChat } = useStyles()
+    const { matchNameChat } = useStyles()
     const { matchImg } = useStyles()
     const { matchImgBox } = useStyles()
     const [allMatches, setAllMatches] = useState([])
@@ -81,12 +122,11 @@ const Matches = ({user}) => {
                 <div className={matches}>
 
                 {allMatches.map((match) => {
-                  console.log(match.id)
-                            if (match.id != user.id) {
+                  // console.log(match)
                                 return (
-                                <div key={match.user_2}
+                                <div key={match.id}
                                 className={match}>
-                                  {console.log(match)}
+                                  {/* {console.log(match)} */}
                                   <div className={eachMatch}>
                                     <div className={matchImgBox}><img
                                     src={match.url} className={matchImg}/></div>
@@ -94,10 +134,28 @@ const Matches = ({user}) => {
                                   </div>
                                    
                                 </div>)
-                            }
 
             })}
-                    
+
+                </div>
+                <div className={messagesSec}>
+                {allMatches.map((match) => {
+                                return (
+                                  <div className={eachMessage}>
+                                    <div key={match.id}
+                                    className={match}>
+                                      <div className={eachMatchChat}>
+                                        <div className={matchImgBox}><img
+                                        src={match.url} className={matchImg}/></div>
+                                        <p className={matchNameChat}>{match.first}</p>
+                                        </div>
+                      
+                                  </div>
+                                </div>)
+
+            })}
+                  
+                 
                 </div>
             </div>
       </div>
