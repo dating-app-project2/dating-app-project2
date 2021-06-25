@@ -34,13 +34,14 @@ const useStyles = createUseStyles({
       
     },
     match:{
-     
+
     }
   })
 
 const Matches = ({user}) => {
     const { messagesBox } = useStyles()
     const { matches } = useStyles()
+    const { matchImg } = useStyles()
     const [allMatches, setAllMatches] = useState([])
 
 
@@ -59,24 +60,18 @@ const Matches = ({user}) => {
                 <div className={matches}>
 
                 {allMatches.map((match) => {
-                            if (match.user_2 != user.id) {
+                  console.log(match.id)
+                            if (match.id != user.id) {
                                 return (
                                 <div key={match.user_2}
                                 className={match}>
+                                  {console.log(match)}
                                    <img
-                                    src={match.url}/>
+                                    src={match.url} className={matchImg}/>
                                     {match.first}
                                 </div>)
-                            }else{
-                                return (
-                               <div key={match.user_1}
-                                className={match}>
-                                <img
-                                src={match.url}/>
-                                {match.first}
-                            </div>)
-
                             }
+
             })}
                     
                 </div>
