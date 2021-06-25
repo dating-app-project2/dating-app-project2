@@ -35,6 +35,9 @@ const useStyles = createUseStyles({
     },
     match:{
 
+    },
+    matchImg:{
+      width: '90px'
     }
   })
 
