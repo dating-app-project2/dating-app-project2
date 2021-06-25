@@ -41,7 +41,7 @@ const useStyles = createUseStyles({
 
 const ProfilePage = ({ history, setUser }) => {
 
-    // const { registerForm, formSection } = useStyles()
+    const { registerForm, formSection } = useStyles()
 
     // const finishRegister = body => {
     //     console.log(body)
@@ -71,10 +71,10 @@ const ProfilePage = ({ history, setUser }) => {
             {(values, isSubmitting) => (
                 <Form className={registerForm}
 
-                    onSubmit={() => {
-                        finishRegister({ ...values.values })
-                        history.push('/swipingPage')
-                    }}
+                    // onSubmit={() => {
+                    //     finishRegister({ ...values.values })
+                    //     history.push('/swipingPage')
+                    // }}
                 >
                     <div className={formSection}>
                         <CustomTextField
