@@ -76,10 +76,6 @@ const Matches = ({user}) => {
                             </div>)
 
                             }
-                        
-                    //     return (
-                    // )
-                    // }
             })}
                     
                 </div>
