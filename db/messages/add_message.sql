@@ -3,6 +3,6 @@
 -- VALUES($1, $2, $3, $4, CURRENT_TIMESTAMP)
 -- RETURNING *;
 INSERT INTO messages
-(user1, user2, message_content, CURRENT_TIMESTAMP)
-VALUES($1, $2, $3, $4, CURRENT_TIMESTAMP)
+(userId, matchId, message_content, message_timestamp)
+VALUES($1, $2, $3, CURRENT_TIMESTAMP)
 RETURNING *;

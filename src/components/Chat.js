@@ -81,41 +81,6 @@ const Chat = ({user, match, history}) => {
 }
 }, [socket])
 
-  //   useEffect(() => {
-  //   if (user && match.params.room && user.id) {
-  //     axios.get("/api/rooms/user").then(async results => {
-  //       setSocket(io.connect(""))
-  //       if (!connected.current) {
-  //         history.push("/")
-  //       }
-  //     })
-  //   }
-  //   return () => {
-  //     connected.current = false
-  //   }
-  // }, [match.params])
-
-
-
-
-  // const checkRooms = res => {
-  //   res.data.forEach(room => {
-  //     if (+room.chatroom_id === +match.params.room) {
-  //       socket.emit("join", {
-  //         username: user.username,
-  //         room: match.params.room
-  //       })
-  //       connected.current = true
-  //       socket.on("message", message => {
-  //         setMessages((messages = [message.message, ...messages]))
-  //       })
-  //       socket.on("messages", incomingMessages => {
-  //         setMessages((messages = [...incomingMessages.messages]))
-  //       })
-  //     }
-  //   })
-  // }
-
   const sendMessage = e => {
     e.preventDefault()
     if (connected && message) {
@@ -170,3 +135,38 @@ export default Chat
 //  test
 //  test
 //  test
+
+  //   useEffect(() => {
+  //   if (user && match.params.room && user.id) {
+  //     axios.get("/api/rooms/user").then(async results => {
+  //       setSocket(io.connect(""))
+  //       if (!connected.current) {
+  //         history.push("/")
+  //       }
+  //     })
+  //   }
+  //   return () => {
+  //     connected.current = false
+  //   }
+  // }, [match.params])
+
+
+
+
+  // const checkRooms = res => {
+  //   res.data.forEach(room => {
+  //     if (+room.chatroom_id === +match.params.room) {
+  //       socket.emit("join", {
+  //         username: user.username,
+  //         room: match.params.room
+  //       })
+  //       connected.current = true
+  //       socket.on("message", message => {
+  //         setMessages((messages = [message.message, ...messages]))
+  //       })
+  //       socket.on("messages", incomingMessages => {
+  //         setMessages((messages = [...incomingMessages.messages]))
+  //       })
+  //     }
+  //   })
+  // }

@@ -69,19 +69,34 @@ function Cards (props) {
 
     //people will be equal to requests sent to you along with the rest of the users table that is not in your matches table
 
-
     useEffect(()=>{
             console.log(user)
             axios.get(`/request/received/${user.id}`)
             .then(res=> setPeople(res.data))
             .catch(err=> console.log(err))
-            axios.get(`/match/all/${user.id}`).then(matches => setMatchArr(matches)).catch(err=> console.log(err))
-            axios.get(`/user/all/${user.id}`).then(users=> setUsersArr(users))
+
+            axios.get(`/match/all/${user.id}`)
+            .then(res => setMatchArr(res.data))
             .catch(err=> console.log(err))
+
+            axios.get(`/user/all/${user.id}`)
+            .then(res=> setUsersArr(res.data))
+            .catch(err=> console.log(err))         
     }, [])
-    if(matchArr.data && usersArr.data){
-        matchArr.data.map(match=> setPeople(usersArr.data.filter(usr => usr.id !== match.id)))
-    }   
+
+    if(matchArr){
+        console.log(matchArr)
+        console.log(usersArr)
+    }
+    
+    useEffect(()=> {
+        if(matchArr[0] && usersArr[0]){
+            setPeople([...people, ...usersArr])
+        // matchArr.data.map(match=> setPeople(usersArr.data.filter(usr => usr.id !== match.id)))
+    }
+    }, [matchArr, usersArr])
+//set people to all the users and all the requests, filter through people and remove all users from the people arr that have a matching id with the id from the matches get request
+console.log(people)
 
     //render cards where the receiver id is = to the userid
     const {Cards, Cards__cardContainer, card, swipe} = useStyles()

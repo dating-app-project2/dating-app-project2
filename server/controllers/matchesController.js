@@ -19,13 +19,12 @@ module.exports={
     },
     getAllMatches: async (req, res) => {
         const db = req.app.get('db')
-        const {user_1} = req.params
-        try{
-        const allMatches = await db.match.get_all_matches(+user_1)
+        const {id} = req.params
+        const allMatches = await db.match.get_all_matches(+id)
         return res.status(200).send(allMatches)}
         catch(err){
             console.log(err)
-            return res.status(500).send(`Unable to get all matches for ${user_1}`)
+            return res.status(500).send(`Unable to get all matches for ${id}`)
         }
     }
         ,

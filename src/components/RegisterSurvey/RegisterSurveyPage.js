@@ -2,6 +2,7 @@ import React from "react"
 import { Formik, Form } from "formik"
 import Button from "@material-ui/core/Button"
 import CustomTextField from "../CustomTextField/CustomTextField"
+import CustomTextField2 from "../CustomTextField/CustomTextField2"
 import { finishRegisterSchema } from "../../schema/schema"
 import { connect } from "react-redux"
 import { setUser } from "../../redux/authReducer"
@@ -60,7 +61,7 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
             phone_num2: '', 
             first: '', 
             last: '', 
-            age: '', 
+            age: 18, 
             gender: '', 
             rel_type: '', 
             sexual_or: '', 
@@ -101,7 +102,7 @@ const RegisterSurveyPage = ( {history, setUser} ) => {
           </div>
            
           <div className={formSection}>
-           <CustomTextField
+           <CustomTextField2
               name="age"
               placeholder="Age"
             />

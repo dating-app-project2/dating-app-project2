@@ -43,8 +43,8 @@ CREATE TABLE matches(
 CREATE TABLE messages(
     id SERIAL PRIMARY KEY,
     message_content VARCHAR(1000) NOT NULL,
-    user1 INT REFERENCES users(id),
-    user2 INT REFERENCES users(id),
+    userId INT REFERENCES users(id),
+    matchId INT REFERENCES matches(id),
     message_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -73,6 +73,15 @@ VALUES
 (1, 2),
 (2, 3),
 (1, 3);
+
+INSERT INTO messages 
+(userId, matchId, message_content)
+values
+(1, 1, 'SUP DUDE'),
+(2, 1, 'NOT MUCH DUDE'),
+(2, 1, 'HAHA'),
+(1, 1, 'NOT SUP SOMETHING BRO'),
+(2, 2, 'NOT SUP');
 
 SELECT * FROM users;
 SELECT * FROM requests;

@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 const LandingPage = ({user, history}) => {
     useEffect(()=> {
         if(user && user.id){
-            history.push('/swiping')
+            history.push('/swipingPage')
         }else{
             history.push('/register')
         }
