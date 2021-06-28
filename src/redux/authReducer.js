@@ -49,7 +49,6 @@ export default function authReducer(state = initialState, action){
             case GET_USER + REJECTED:
                 return {...state, errorMessage: payload, loading: false}
             case SET_USER:
-                console.log(payload)
                 return {...state, user: payload}
             default:
                 return state
