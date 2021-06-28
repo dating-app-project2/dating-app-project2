@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: '100',
-    borderBottom: '1px solid #f9f9f9'
+    // borderBottom: '1px solid #f9f9f9'
   },
   headerIcon: {
     padding: '20px'

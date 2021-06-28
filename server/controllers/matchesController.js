@@ -18,17 +18,17 @@ module.exports={
         .catch(err => res.status(500).send(err))
     },
     getAllMatches: async (req, res) => {
-        try{
         const db = req.app.get('db')
         const {id} = req.params
-        const allMatches = await db.match.get_all_matches(+id)
-        return res.status(200).send(allMatches)}
+        try{
+            const allMatches = await db.match.get_all_matches(+id)
+            return res.status(200).send(allMatches)
+        }
         catch(err){
             console.log(err)
             return res.status(500).send(`Unable to get all matches for ${id}`)
         }
-    }
-        ,
+    },
     getOneMatch: (req, res) => {
         const db = req.app.get('db')
         const {id} = req.params
