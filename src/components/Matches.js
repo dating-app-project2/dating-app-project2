@@ -94,7 +94,7 @@ const useStyles = createUseStyles({
     }
   })
 
-const Matches = ({user}) => {
+const Matches = ({user, history}) => {
     const { messagesBox } = useStyles()
     const { messagesSec } = useStyles()
     const { eachMessage } = useStyles()
@@ -114,7 +114,7 @@ const Matches = ({user}) => {
         .catch(err => console.log(err))}
     }, [])
 
-    
+   
     return(
         <div>
             <h1>Matches</h1>
@@ -141,7 +141,7 @@ const Matches = ({user}) => {
                 <div className={messagesSec}>
                 {allMatches.map((match) => {
                                 return (
-                                  <div className={eachMessage}>
+                                  <div className={eachMessage} onClick={() => history.push("/chat")}>
                                     <div key={match.id}
                                     className={match}>
                                       <div className={eachMatchChat}>
