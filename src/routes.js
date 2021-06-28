@@ -17,7 +17,7 @@ export default(
         <Route path = '/register' component={Register} />
         <Route path='/about' component={About}/>
         <Route path="/registerSurveyPage" component={RegisterSurveyPage}/>
-        <Route path="/chat" component={Chat}/>
+        <Route path="/chat/:matchId" component={Chat}/>
         <Route path="/swipingPage" component={SwipingPage}/>
         <Route path="/matches" component={Matches}/>
     </Switch>

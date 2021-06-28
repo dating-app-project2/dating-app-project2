@@ -105,7 +105,7 @@ const Header = ({user, setUser, history, location}) => {
             <ForumIcon 
               fontSize='large' 
               className={headerIcon}
-              onClick={() => history.push("/chat")}
+              onClick={() => history.push("/matches")}
             />
           </IconButton>
           <IconButton>

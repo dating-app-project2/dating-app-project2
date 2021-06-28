@@ -46,10 +46,14 @@ const useStyles = createUseStyles({
     }
   })
 
-const Chat = ({user, match, history}) => {
+const Chat = (props) => {
+  const {user, match, history} = props
+  const {matchId} = props.match.params
+
     const [socket, setSocket] = useState(null)
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
+    console.log(props)
 
     const connected = useRef(false)
 
@@ -57,7 +61,6 @@ const Chat = ({user, match, history}) => {
     const { chatSection } = useStyles()
     const { inputBox } = useStyles()
     const { inputAndBtn } = useStyles()
-
 
     useEffect(() => {
       setSocket(io.connect())
@@ -69,17 +72,35 @@ const Chat = ({user, match, history}) => {
           console.log('Socket is null')
       }
       }
-    
 }, [])
+    useEffect(()=> {
+      if(socket){
+      
+      socket.emit('join', {matchId})
+      socket.on('messages', messages=> {
+        setMessages(messages.messages)
+      } )
+      }
+    }, [socket])
 
-  useEffect(() => {
-    if(socket){
-        socket.on('relay-message', (body) => {
-            console.log(body)
-            setMessages((m) => [...m, body])
-        })
-}
-}, [socket])
+    console.log(messages)
+
+//   useEffect(() => {
+//     if(socket){
+//         socket.on('relay-message', (body) => {
+//             console.log(body)
+//             setMessages((m) => [...m, body])
+//         })
+// }
+// }, [socket])
+
+
+//  useEffect(()=> {
+//      socket.on('messages', (body)=> {
+//        console.log(body)
+//        setMessages((m)=> [...m, body])
+//      })
+//     }, [])
 
   const sendMessage = e => {
     e.preventDefault()
@@ -160,6 +181,7 @@ export default Chat
   //         username: user.username,
   //         room: match.params.room
   //       })
+ 
   //       connected.current = true
   //       socket.on("message", message => {
   //         setMessages((messages = [message.message, ...messages]))

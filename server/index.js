@@ -19,6 +19,7 @@ const authCtrl = require('./controllers/authController')
 const reqCtrl = require('./controllers/requestsController')
 const matchCtrl = require('./controllers/matchesController');
 const userCtrl = require('./controllers/usersController')
+const msgCtrl = require('./controllers/messagesController')
 
 const app = express();
 
@@ -60,8 +61,8 @@ console.log(`Server listening on ${SERVER_PORT}`)))
       io.emit('relay-message', body)
     }
      )
-    //  socket.on('join', (body, callback)=> 
-    //  msgCtrl.join(db, io, socket, body, callback))
+     socket.on('join', (body, callback)=> 
+     msgCtrl.join(db, io, socket, body, callback))
   
     //  socket.on("leaving", body => msgCtrl.leaving(io,  body))
     })

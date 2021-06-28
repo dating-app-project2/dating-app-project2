@@ -11,11 +11,18 @@ module.exports={
         // callback()
     },
     join: async (db, io, socket, body) => {
-        const {match} = body
-        const messages = await db.messages.get_all_messages(match)
-        socket.join(match)
+        const {matchId} = body
+        const messages = await db.messages.get_all_messages(matchId)
+        console.log(matchId)
+        socket.join(matchId)
+        console.log(messages)
         socket.emit('messages', {messages})
-    }
+    },
+    // getAllMessages: (req, res) => {
+    //     const db = req.app.get('db')
+    //     const {matchId} = req.params
+    //     const messages = await db.messages.get_all_messages(matchId)
+    // }
 }
 
 //test
