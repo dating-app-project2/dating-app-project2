@@ -51,9 +51,6 @@ const outOfFrame = (name) => {
 }
 
 function Cards (props) {
-
-    console.log(props)
-
     const {user, setMatches, matches} = props
     const swiped = (direction, user2) => {
         if(direction==='right'){
@@ -66,6 +63,7 @@ function Cards (props) {
     };
     const [matchArr, setMatchArr] = useState([])
     const [usersArr, setUsersArr] = useState([])
+    //if people has the input then don't accept it, but if it doesn't, input it
     const [people, setPeople] = useState([])
     //people is going to be all the cards that are rendered on the screen for the users. in the useEffect below, we are setting people equal to the received requests for the user who's id is = to user.id
 
@@ -81,8 +79,9 @@ function Cards (props) {
             axios.get(`/user/all/${user.id}`).then(users=> setUsersArr(users))
             .catch(err=> console.log(err))
     }, [])
-    console.log(usersArr)
-    console.log(matchArr)
+    if(matchArr.data && usersArr.data){
+        matchArr.data.map(match=> setPeople(usersArr.data.filter(usr => usr.id !== match.id)))
+    }   
 
     //render cards where the receiver id is = to the userid
     const {Cards, Cards__cardContainer, card, swipe} = useStyles()
