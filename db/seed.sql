@@ -53,7 +53,7 @@ CREATE TABLE messages(
 INSERT INTO users
 (email, phone_area, phone_num1, phone_num2, first, last, password, age, gender, rel_type, sexual_or, bio, url)
 VALUES 
-('jadenitripp@gmail.com', '801', '362', '8766', 'Jaden', 'Tripp', 'adminLogin123!', '22', 'Male', 'Hookup', 'Bisexual','Let''s get it started it here', 'https://ibb.co/6FvD8RM'),
+('jadenitripp@gmail.com', '801', '362', '8766', 'Jaden', 'Tripp', 'adminLogin123!', '22', 'Male', 'Hookup', 'Bisexual','Let''s get it started it here', 'https://i.ibb.co/WfDB0Wh/jadenpark.jpg'),
 ('joshuadreyleavitt@gmail.com', '385', '685', '8434', 'Joshua', 'Leavitt', 'adminLogin123!', '21', 'Male', 'Hookup', 'Straight', 'Swipe and lets do something', 'https://ibb.co/BLZvd8s'),
 ('danielboesch20@gmail.com', '440', '749', '4361', 'Daniel', 'Boesch', 'adminLogin123!', '25', 'Male', 'Taken', 'Straight', 'Oh I have no idea', 'https://ibb.co/kK9g6pp%27');
 
