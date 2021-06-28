@@ -43,17 +43,16 @@ const ProfilePage = ({ history, setUser }) => {
 
     const { registerForm, formSection } = useStyles()
 
-    const finishRegister = body => {
-        console.log(body)
-        axios.put(`/auth/finishregister`, body)
-            .then(results => {
-                toast.success('Account Creation completed!')
-                setUser(results.data)
-                history.push('/swipingPage')
+    // const finishRegister = body => {
+    //     console.log(body)
+    //     axios.put(`/profile/get`, body)
+    //         .then(results => {
+    //             setUser(results.data)
+    //             history.push('/swipingPage')
 
-            })
-            .catch(err => toast.error(err.response.data))
-    }
+    //         })
+    //         .catch(err => toast.error(err.response.data))
+    // }
 
     return (
         <Formik
@@ -65,16 +64,17 @@ const ProfilePage = ({ history, setUser }) => {
                 rel_type: '',
                 sexual_or: ''
             }}
-            validationSchema={finishRegisterSchema}>
+        // validationSchema={finishRegisterSchema}
+        >
 
 
             {(values, isSubmitting) => (
                 <Form className={registerForm}
 
-                    onSubmit={() => {
-                        finishRegister({ ...values.values })
-                        history.push('/swipingPage')
-                    }}
+                    // onSubmit={() => {
+                    //     finishRegister({ ...values.values })
+                    //     history.push('/swipingPage')
+                    // }}
                 >
                     <div className={formSection}>
                         <CustomTextField
@@ -113,14 +113,12 @@ const ProfilePage = ({ history, setUser }) => {
 
                     <Button
                         disabled={isSubmitting}
-                        type="submit"
+                        type="edit"
                         variant="contained"
                         color="secondary"
                     >
 
-                        Submit
-
-                        Finish registration
+                        Edit
 
           </Button>
                 </Form>
