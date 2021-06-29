@@ -118,30 +118,24 @@ const Chat = (props) => {
 
     // console.log(messages)
 
-//   useEffect(() => {
-//     if(socket){
-//         socket.on('relay-message', (body) => {
-//             console.log(body)
-//             setMessages((m) => [...m, body])
-//         })
-// }
-// }, [socket])
-
-
-//  useEffect(()=> {
-//      socket.on('messages', (body)=> {
-//        console.log(body)
-//        setMessages((m)=> [...m, body])
-//      })
-//     }, [])
+  useEffect(() => {
+    if(socket){
+        socket.on('relay-message', (body) => {
+            console.log(body)
+            setMessages((m) => [...m, body])
+        })
+}
+}, [socket])
 
   const sendMessage = e => {
     e.preventDefault()
     if (connected && message) {
       socket.emit( "sendMessage",
         {
-          // name: user.first,
-          message
+          message_content: message,
+          matchId,
+          userid: user.id,
+          first: user.first
         },
         () => {
           setMessage("")
@@ -151,8 +145,6 @@ const Chat = (props) => {
       toast.error("Cannot send blank messages")
     }
   }
-
-
 
     return(
         <div >
