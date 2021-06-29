@@ -141,7 +141,8 @@ const Matches = ({user, history}) => {
                 <div className={messagesSec}>
                 {allMatches.map((match) => {
                                 return (
-                                  <div className={eachMessage} onClick={() => history.push(`/chat/${match.id}`)}>
+                                  <div className={eachMessage} onClick={() => history.push(`/chat/${match.matchid}`)}>
+                                    {console.log(match)}
                                     <div key={match.id}
                                     className={match}>
                                       <div className={eachMatchChat}>

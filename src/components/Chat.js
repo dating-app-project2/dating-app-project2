@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField"
 import { createUseStyles } from "react-jss"
 import Button from "@material-ui/core/Button"
 import axios from "axios"
+import { getUser } from '../redux/authReducer'
 import { toast } from "react-toastify"
 
 const useStyles = createUseStyles({
@@ -43,17 +44,45 @@ const useStyles = createUseStyles({
     inputBox: {
       width: "300px",
 
+    },
+    userMsg: {
+      // backgroundColor: "red",
+      width: "450px",
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "center"
+    },
+    matchMsg: {
+      // backgroundColor: "yellow",
+      width: "450px",
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "center"
+
+    },
+    msgName: {
+      marginLeft: "10px",
+      marginRight: "10px"
+
+    },
+    messsageContent: {
+      border: "1px solid black",
+      padding: "5px" ,
+      paddingLeft: "10px" ,
+      paddingRight: "10px" ,
+      borderRadius: "50px"
+
     }
   })
 
 const Chat = (props) => {
   const {user, match, history} = props
-  const {matchId} = props.match.params
+  const {matchId} = match.params
+  // console.log(props)
 
     const [socket, setSocket] = useState(null)
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
-    console.log(props)
 
     const connected = useRef(false)
 
@@ -61,6 +90,10 @@ const Chat = (props) => {
     const { chatSection } = useStyles()
     const { inputBox } = useStyles()
     const { inputAndBtn } = useStyles()
+    const { matchMsg } = useStyles()
+    const { userMsg } = useStyles()
+    const { msgName } = useStyles()
+    const { messsageContent } = useStyles()
 
     useEffect(() => {
       setSocket(io.connect())
@@ -83,7 +116,7 @@ const Chat = (props) => {
       }
     }, [socket])
 
-    console.log(messages)
+    // console.log(messages)
 
 //   useEffect(() => {
 //     if(socket){
@@ -118,6 +151,9 @@ const Chat = (props) => {
       toast.error("Cannot send blank messages")
     }
   }
+
+
+
     return(
         <div >
         <div >
@@ -125,10 +161,19 @@ const Chat = (props) => {
         </div>
             <div className={chatSectionBox}>
               <div className={chatSection}>
+                {console.log(messages)}
                 {messages.map((body) => (
                   <div>
-                        {body.message}
-                    </div>
+                    {body.userid === user.id ? 
+                    <div className={userMsg}>
+                    <p className={messsageContent}>{body.message_content}</p>  
+                    <p className={msgName}>{user.first}</p>
+                    </div> :
+                    <div className={matchMsg}> 
+                    <p className={msgName}>{body.first}</p>
+                    <p className={messsageContent}>{body.message_content}</p>
+                    </div>}
+                  </div>
                 ))}
               </div>
                 <div className={inputAndBtn}>
@@ -152,7 +197,17 @@ const Chat = (props) => {
     )
 }
 
-export default Chat
+
+const mapStateToProps = state => {
+  const { user } = state.auth
+  return { user }
+}
+
+const mapDispatchToProps = {
+  getUser
+}
+
+export default  connect(mapStateToProps, mapDispatchToProps)(Chat)
 //  test
 //  test
 //  test
