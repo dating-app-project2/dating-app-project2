@@ -73,9 +73,9 @@ const Chat = (props) => {
       }
       }
 }, [])
+
     useEffect(()=> {
       if(socket){
-      
       socket.emit('join', {matchId})
       socket.on('messages', messages=> {
         setMessages(messages.messages)
@@ -102,18 +102,10 @@ const Chat = (props) => {
 //      })
 //     }, [])
 
-  const sendMessage = e => {
+  const sendMessage = (e) => {
     e.preventDefault()
     if (connected && message) {
-      socket.emit( "sendMessage",
-        {
-          // name: user.first,
-          message
-        },
-        () => {
-          setMessage("")
-        }
-      )
+      socket.emit( "sendMessage",{ user, matchId, message}, () => { setMessage("")})
     } else {
       toast.error("Cannot send blank messages")
     }

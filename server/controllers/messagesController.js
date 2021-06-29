@@ -5,10 +5,9 @@ module.exports={
         const newMessage = await db.messages.add_message(
            user.id,
            matchId,
-           message_content
-        )
-        // io.in(matchId).emit('message', {message: newMessage[0]})
-        // callback()
+           message)
+        io.in(matchId).emit('message', {message: newMessage[0]})
+        callback()
     },
     join: async (db, io, socket, body) => {
         const {matchId} = body
