@@ -77,13 +77,13 @@ app.put('/auth/finishRegister', authCtrl.finishRegister)
 
 //matches endpoints
 app.post('/match/add', matchCtrl.addToMatches)
-app.delete('/match/:id', matchCtrl.removeFromMatches)
+app.delete('/match/delete/:id', matchCtrl.removeFromMatches)
 app.get('/match/all/:id', matchCtrl.getAllMatches)
 app.get('/match/:id', matchCtrl.getOneMatch)
 
 //requests endpoints
 app.post('/request/create', reqCtrl.createRequest)
-app.delete('/request/:id', reqCtrl.deleteRequest)
+app.delete('/request/delete/:sender_id/:receiver_id', reqCtrl.deleteRequest)
 app.get('/request/sent/:sender_id', reqCtrl.getSentRequests)
 app.get('/request/received/:receiver_id', reqCtrl.getReceivedRequests)
 

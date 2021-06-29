@@ -127,12 +127,12 @@ const Matches = ({user, history}) => {
                                 <div key={match.id}
                                 className={match}>
                                   {/* {console.log(match)} */}
-                                  <div className={eachMatch}>
+                                  <div className={eachMatch}
+                                  onClick={()=> history.push(`/chat/${match.id}`)}>
                                     <div className={matchImgBox}><img
                                     src={match.url} className={matchImg}/></div>
                                     {match.first}
                                   </div>
-                                   
                                 </div>)
 
             })}
