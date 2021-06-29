@@ -1,2 +1,5 @@
 DELETE FROM requests 
-WHERE id = $1;
+WHERE sender_id = $1;
+
+SELECT * FROM requests 
+WHERE receiver_id = $2;

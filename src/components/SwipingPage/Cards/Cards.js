@@ -6,11 +6,19 @@ import { useEffect } from 'react';
 import { getUser } from '../../../redux/authReducer'
 import {connect} from 'react-redux'
 import { setMatches } from '../../../redux/matchReducer'
+// import ReplayIcon from '@material-ui/icons/Replay'
+// import CloseIcon from '@material-ui/icons/Close'
+// import StarRateIcon from '@material-ui/icons/StarRate'
+// import FavoriteIcon from '@material-ui/icons/Favorite'
+// import FlashOnIcon from '@material-ui/icons/FlashOn'
+// import  IconButton from '@material-ui/core/IconButton'
 
 const useStyles = createUseStyles({
-    Cards:{
-
-    },
+    // SwipingPage: {
+    //     // display: 'flex',
+    //     // flexDirection: "column",
+    //     // textAlign: 'center'
+    // },
     Cards__cardContainer:{
         display: 'flex',
         justifyContent: 'center',
@@ -41,25 +49,67 @@ const useStyles = createUseStyles({
         width: '100%',
         height: '100%'
     },
-    
+    // swipeButtons: {
+    //     position: 'relative',
+    //     top: '60vh',
+    //     display: '10vh',
+    //     width: '100%',
+    //     justifyContent: 'space-evenly',
+    //     multiIconButtonRoot: {
+    //         backgroundColor: "white",
+    //         boxShadow: '0px 10px 53px 0px rgba(0, 0, 0, 0.3) !important'
+    //     }
+    // },
+    // swipeButtons__repeat: {
+    //     padding: '3vw !important',
+    //     color: '#f5b748 !important'
+    // },
+    // swipeButtons__left: {
+    //     padding: '3vw !important',
+    //     color: '#ec5e6f !important'
+    // },
+    // swipeButtons__star: {
+    //     padding: '3vw !important',
+    //     color: '#62b4f9 !important'
+    // },
+    // swipeButtons__right: {
+    //     padding: '3vw !important',
+    //     color: '#76e2b3 !important'
+    // },
+    // swipeButtons__lightning: {
+    //     padding: '3vw !important',
+    //     color: '#915dd1 !important'
+    // }
 })
-
-
 
 const outOfFrame = (name) => {
     console.log(name+ ' left the screen!');
 }
 
 function Cards (props) {
-    const {user, setMatches, matches} = props
-    const swiped = (direction, user2) => {
+    console.log(props)
+    const {user, setMatches, matches, setRequests} = props
+    const swiped = (direction, user2, sender) => {
+        if(!sender){
         if(direction==='right'){
             //if a user swipes right we need to check and see if there is a request from user2 that already exists. if it exists we need to delete it from the requests table and post the userid's to the matches table. we should also do a toastify alert here to alert them that there was a match with the user and to check their matches table. We could also do a history.push('/matches') or to the individual match    
             console.log(user2)
-        axios.post('/match/add', {user1: user.id, user2: user2})
-        .then(res=> setMatches(res.data))
-        .catch(err=> console.log(err))
+        if(sender === user2){
+            axios.post('/match/add', {user1: user.id, user2: user2})
+            .then(res=> setMatches(...matches, res.data))
+            .catch(err=> console.log(err))
+            console.log(people)
+            setPeople([...new Set(people)])
         }
+        else{
+            axios.post('/request/create', {sender_id: user.id, receiver_id: user2}).then(res=> res.data).catch(err=> console.log(err))
+        }
+        }
+        if(direction==='left'){
+           axios.delete(`/request/delete/${user2}/${user.id}`).then(res => setPeople(res.data)).catch(err=> console.log(err) )
+        }
+        console.log(people)
+    }
     };
     const [matchArr, setMatchArr] = useState([])
     const [usersArr, setUsersArr] = useState([])
@@ -101,25 +151,24 @@ console.log(people)
     //render cards where the receiver id is = to the userid
     const {Cards, Cards__cardContainer, card, swipe} = useStyles()
     return(
-        <div className={Cards}>
-            <div className={Cards__cardContainer}>
-                 {people.map((person)=> (
-                <TinderCard
-                className={swipe}
-                key={person.id}
-                preventSwipe={["up", "down"]}
-                onSwipe={(dir)=> swiped(dir, person.id)}
-                onCardLeftScreen={()=>outOfFrame(person.first)}>
-                    <div
-                    style={{backgroundImage: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe_W6S2_Navkn8juCmGvny5FzStxlsUMYQm-6cRh_2N-v1ctUY`
-                    }}className ={card}>
-                        <h3>{person.first}</h3>
-                        <h4>{person.age}</h4>
-                        <p>{person.bio}</p>
-                    </div>
-                </TinderCard>
-                 ))}
-            </div>
+            <div className={Cards}>
+                 <div className={Cards__cardContainer}>
+                    {people.map((person)=> (
+                    <TinderCard
+                    className={swipe}
+                    key={person.id}
+                    preventSwipe={["up", "down"]}
+                    onSwipe={(dir)=> swiped(dir, person.id, person.sender_id)}
+                    onCardLeftScreen={()=>outOfFrame(person.first)}>
+                        <div style={{backgroundImage: `${person.url}`
+                        }}className ={card}>
+                            <h3>{person.first}</h3>
+                            <h4>{person.age}</h4>
+                            <p>{person.bio}</p>
+                        </div>
+                    </TinderCard>
+                    ))}
+                </div>
         </div>
     )
 }

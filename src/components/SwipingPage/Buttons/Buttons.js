@@ -7,6 +7,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import FlashOnIcon from '@material-ui/icons/FlashOn'
 import  IconButton from '@material-ui/core/IconButton'
 
+
 const useStyles = createUseStyles({
     swipeButtons: {
         position: 'relative',
@@ -44,7 +45,11 @@ const swiped = () => {
 
 }
 
-function SwipeButtons() {
+
+function SwipeButtons(props) {
+
+    console.log(props)
+
     const {swipeButtons, swipeButtons__repeat, swipeButtons__left, swipeButtons__right, swipeButtons__star, swipeButtons__lightning} = useStyles()
     return(
         <div className={swipeButtons}>
@@ -59,9 +64,6 @@ function SwipeButtons() {
             </IconButton>
             <IconButton onClick={swiped} className={swipeButtons__right}>
                 <FavoriteIcon fontSize="large"/>
-            </IconButton>
-            <IconButton onClick={swiped} className={swipeButtons__lightning}>
-                <FlashOnIcon fontSize="large"/>
             </IconButton>
         </div>
     )

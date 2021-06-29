@@ -8,9 +8,9 @@ module.exports={
     },
     deleteRequest: (req, res) => {
         const db = req.app.get('db')
-        const {id} = req.params
-        db.request.delete_request(id)
-        .then(results=> res.sendStatus(200))
+        const {sender_id, receiver_id} = req.params
+        db.request.delete_request(sender_id, receiver_id)
+        .then(results => res.status(200).send(results))
         .catch(err=>console.log(err))
     },
     getSentRequests: (req, res) => {
