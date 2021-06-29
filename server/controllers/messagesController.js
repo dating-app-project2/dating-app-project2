@@ -5,7 +5,8 @@ module.exports={
         const newMessage = await db.messages.add_message(
            user.id,
            matchId,
-           message_content
+           message_content,
+           user.first
         )
         // io.in(matchId).emit('message', {message: newMessage[0]})
         // callback()
