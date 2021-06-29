@@ -74,14 +74,23 @@ VALUES
 (2, 3),
 (1, 3);
 
-INSERT INTO messages 
-(userId, matchId, message_content)
-values
-(1, 1, 'SUP DUDE'),
-(2, 1, 'NOT MUCH DUDE'),
-(2, 1, 'HAHA'),
-(1, 1, 'NOT SUP SOMETHING BRO'),
-(2, 2, 'NOT SUP');
+INSERT INTO messages
+(message_content, userid, matchid)
+VALUES
+('SUP', 2, 1)
+('WANNA HANG', 1, 1)
+('WHATS UP', 2, 1)
+('DO I KNOW YOU?', 1, 1)
+('WANNA BE FRIENDS', 2, 2)
+('YOU SMELL', 2, 2)
+('WASSUP', 3, 2)
+('YO YO YO', 3, 2)
+('HELLO', 2, 2)
+('SUP DUDE??', 3, 3)
+('LOL', 1, 3)
+('You suck', 1, 3)
+('You too', 3, 3)
+('K bye', 1, 3)
 
 SELECT * FROM users;
 SELECT * FROM requests;
