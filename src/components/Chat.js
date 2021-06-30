@@ -129,19 +129,12 @@ const Chat = (props) => {
 
   const sendMessage = e => {
     e.preventDefault()
-    if (connected && message) {
-      socket.emit( "sendMessage",
-        {
-          message_content: message,
-          matchId,
-          userid: user.id,
-          first: user.first
-        },
-        () => {
-          setMessage("")
-        }
-      )
-    } else {
+    if (connected && message){
+      axios.post(`/message/new`, {user, matchId, message_content: message})
+      .then(res=> socket.emit( "sendMessage", res.data))
+      .catch(err=> console.log(err))
+      setMessage('')
+    }else {
       toast.error("Cannot send blank messages")
     }
   }

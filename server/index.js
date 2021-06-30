@@ -88,3 +88,5 @@ app.get('/request/received/:receiver_id', reqCtrl.getReceivedRequests)
 
 //user endpoints 
 app.get('/user/all/:userId', userCtrl.getUsers)
+
+app.post('/message/new', msgCtrl.sendMessage)
