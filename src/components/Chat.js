@@ -84,7 +84,6 @@ const Chat = (props) => {
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
 
-    const connected = useRef(false)
 
     const { chatSectionBox } = useStyles()
     const { chatSection } = useStyles()
@@ -138,9 +137,9 @@ const Chat = (props) => {
 
   const sendMessage = (e) => {
     e.preventDefault()
-    if (connected && message){
+    if (socket && message){
       axios.post(`/message/new`, {user, matchId, message_content: message})
-      .then(res=> socket.emit( "sendMessage", res.data))
+      .then(res=> socket.emit( "sendMessage", {message: res.data, matchId}))
       .catch(err=> console.log(err))
       setMessage('')
     }else {
