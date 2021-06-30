@@ -106,9 +106,9 @@ const Chat = (props) => {
       }
       }
 }, [])
+
     useEffect(()=> {
       if(socket){
-      
       socket.emit('join', {matchId})
       socket.on('messages', messages=> {
         setMessages(messages.messages)
@@ -127,7 +127,7 @@ const Chat = (props) => {
 }
 }, [socket])
 
-  const sendMessage = e => {
+  const sendMessage = (e) => {
     e.preventDefault()
     if (connected && message){
       axios.post(`/message/new`, {user, matchId, message_content: message})
