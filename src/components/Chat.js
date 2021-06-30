@@ -118,33 +118,26 @@ const Chat = (props) => {
 
     // console.log(messages)
 
-//   useEffect(() => {
-//     if(socket){
-//         socket.on('relay-message', (body) => {
-//             console.log(body)
-//             setMessages((m) => [...m, body])
-//         })
-// }
-// }, [socket])
-
-
-//  useEffect(()=> {
-//      socket.on('messages', (body)=> {
-//        console.log(body)
-//        setMessages((m)=> [...m, body])
-//      })
-//     }, [])
+  useEffect(() => {
+    if(socket){
+        socket.on('relay-message', (body) => {
+            console.log(body)
+            setMessages((m) => [...m, body])
+        })
+}
+}, [socket])
 
   const sendMessage = (e) => {
     e.preventDefault()
-    if (connected && message) {
-      socket.emit( "sendMessage",{ user, matchId, message}, () => { setMessage("")})
-    } else {
+    if (connected && message){
+      axios.post(`/message/new`, {user, matchId, message_content: message})
+      .then(res=> socket.emit( "sendMessage", res.data))
+      .catch(err=> console.log(err))
+      setMessage('')
+    }else {
       toast.error("Cannot send blank messages")
     }
   }
-
-
 
     return(
         <div >

@@ -56,7 +56,6 @@ console.log(`Server listening on ${SERVER_PORT}`)))
      socket.on('sendMessage', (body) => 
     //  msgCtrl.sendMessage(db, io, socket, body, callback)
     {
-      
       console.log(body)
       io.emit('relay-message', body)
     }
@@ -89,3 +88,5 @@ app.get('/request/received/:receiver_id', reqCtrl.getReceivedRequests)
 
 //user endpoints 
 app.get('/user/all/:userId', userCtrl.getUsers)
+
+app.post('/message/new', msgCtrl.sendMessage)
