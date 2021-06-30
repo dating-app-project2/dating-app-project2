@@ -106,6 +106,14 @@ const Matches = ({user, history}) => {
     const { matchImgBox } = useStyles()
     const [allMatches, setAllMatches] = useState([])
 
+    useEffect(()=> {
+      if(user && user.id){
+            history.push('/matches')
+        }else{
+            history.push('/login')
+        }
+  }, [user, history])
+
 
     useEffect(() => {
         {user && 
