@@ -95,6 +95,15 @@ const Chat = (props) => {
     const { msgName } = useStyles()
     const { messsageContent } = useStyles()
 
+    useEffect(()=> {
+      if(user && user.id){
+            history.push(`/chat/${matchId}`)
+        }else{
+            history.push('/login')
+        }
+  }, [user, history])
+
+
     useEffect(() => {
       setSocket(io.connect())
       return () => {
