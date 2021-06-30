@@ -1,15 +1,15 @@
 module.exports={
     //needs fixing
     sendMessage: async (db, io , socket, body, callback)=>{
-        const {user, matchId, message} = body
-        const newMessage = await db.messages.add_message(
+        const {user, matchId, message_content} = body
+        console.log(body)
+        const [newMessage] = await db.messages.add_message(
            user.id,
            matchId,
-           message_content,
-           user.first
+           message_content
         )
-        // io.in(matchId).emit('message', {message: newMessage[0]})
-        // callback()
+        io.in(matchId).emit('message', {message: newMessage})
+        callback()
     },
     join: async (db, io, socket, body) => {
         const {matchId} = body
@@ -19,6 +19,7 @@ module.exports={
         console.log(messages)
         socket.emit('messages', {messages})
     },
+    
     // getAllMessages: (req, res) => {
     //     const db = req.app.get('db')
     //     const {matchId} = req.params
