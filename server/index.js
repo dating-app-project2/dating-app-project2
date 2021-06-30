@@ -3,12 +3,6 @@ const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
 
-const userSocketIds  = {}
-//user_id: socket.id
-
-// userSocketIds[id]
-
-
 const {
   CONNECTION_STRING, 
   SESSION_SECRET, 
@@ -43,26 +37,20 @@ massive({
   const io = require("socket.io")
   (app.listen(SERVER_PORT, () =>
 console.log(`Server listening on ${SERVER_PORT}`)))
-   //connection for io
+   //connection for socket.io
    io.on('connection', (socket) =>{
-     console.log(`Socket ${socket.id} connected`)
-     socket.on('disconnect', () => {
-       console.log(`Socket ${socket.id} disconnected`)
-     })
-    //  const db = req.app.get('db')
-     //send message listener that will execute sendMessage()
 
+     console.log(`Socket ${socket.id} connected`)
+
+     socket.on('disconnect', () => {
+       console.log(`Socket ${socket.id} disconnected`)})
 
     socket.on('sendMessage', ({message, matchId}) => 
+    {io.to(matchId).emit('relay-message', message )})
 
-    {
-      io.to(matchId).emit('relay-message', message )
-    }
-     )
      socket.on('join', (body, callback)=> 
      msgCtrl.join(db, io, socket, body, callback))
-  
-    //  socket.on("leaving", body => msgCtrl.leaving(io,  body))
+
     })
 }).catch(err=>console.log(err))
 
@@ -88,4 +76,5 @@ app.get('/request/received/:receiver_id', reqCtrl.getReceivedRequests)
 //user endpoints 
 app.get('/user/all/:userId', userCtrl.getUsers)
 
+//send message endpoint
 app.post('/message/new', msgCtrl.sendMessage)
