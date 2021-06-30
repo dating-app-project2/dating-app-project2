@@ -1,15 +1,20 @@
 module.exports={
-    //needs fixing
-    sendMessage: async (db, io , socket, body, callback)=>{
-        const {user, matchId, message_content} = body
-        console.log(body)
+    sendMessage: async (req, res)=>{
+       try {
+        const db = req.app.get('db')
+        const {user, matchId, message_content} = req.body
+        console.log(req.body)
         const [newMessage] = await db.messages.add_message(
            user.id,
            matchId,
            message_content
         )
-        io.in(matchId).emit('message', {message: newMessage})
-        callback()
+        newMessage.first = user.first
+        return res.status(200).send(newMessage)}
+        catch(err){
+            console.log(err)
+            return res.status(500).send(err)
+        }
     },
     join: async (db, io, socket, body) => {
         const {matchId} = body
@@ -19,12 +24,4 @@ module.exports={
         console.log(messages)
         socket.emit('messages', {messages})
     },
-    
-    // getAllMessages: (req, res) => {
-    //     const db = req.app.get('db')
-    //     const {matchId} = req.params
-    //     const messages = await db.messages.get_all_messages(matchId)
-    // }
 }
-
-//test

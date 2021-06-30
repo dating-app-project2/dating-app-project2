@@ -53,11 +53,10 @@ console.log(`Server listening on ${SERVER_PORT}`)))
      //send message listener that will execute sendMessage()
 
 
-     socket.on('sendMessage', (body) => 
-    //  msgCtrl.sendMessage(db, io, socket, body, callback)
+    socket.on('sendMessage', ({message, matchId}) => 
+
     {
-      console.log(body)
-      io.emit('relay-message', body)
+      io.to(matchId).emit('relay-message', message )
     }
      )
      socket.on('join', (body, callback)=> 
