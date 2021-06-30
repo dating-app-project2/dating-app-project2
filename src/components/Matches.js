@@ -128,7 +128,7 @@ const Matches = ({user, history}) => {
                                 className={match}>
                                   {/* {console.log(match)} */}
                                   <div className={eachMatch}
-                                  onClick={()=> history.push(`/chat/${match.id}`)}>
+                                  onClick={()=> history.push(`/chat/${match.matchid}`)}>
                                     <div className={matchImgBox}><img
                                     src={match.url} className={matchImg}/></div>
                                     {match.first}
