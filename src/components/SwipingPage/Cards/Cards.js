@@ -100,8 +100,8 @@ const useStyles = createUseStyles({
     // swipeButtons__lightning: {
     //     padding: '3vw !important',
     //     color: '#915dd1 !important'
+    // // }
     // }
-    }
 })
 
 const outOfFrame = (name) => {
