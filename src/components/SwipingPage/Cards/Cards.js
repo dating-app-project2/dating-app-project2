@@ -129,10 +129,31 @@ const outOfFrame = (name) => {
 function Cards (props) {
     console.log(props)
     const {user, setMatches, matches, setRequests} = props
+    const [matchArr, setMatchArr] = useState([])
+    const [usersArr, setUsersArr] = useState([])
+    const [requestArr, setRequestArr] = useState([])
+    const [people, setPeople] = useState([])
+    //first step is to get all the users that aren't equal to our user id and save that to an array of objects that we can map over
+
+    //we then need to check and see if any of those users are already in our match table. if they are, we need to remove them from the array
+   useEffect(()=>{
+            console.log(user)
+            axios.get(`/request/received/${user.id}`)
+            .then(res=> setRequestArr(res.data))
+            .catch(err=> console.log(err))
+
+            axios.get(`/match/all/${user.id}`)
+            .then(res => setMatchArr(res.data))
+            .catch(err=> console.log(err))
+
+            axios.get(`/user/all/${user.id}`)
+            .then(res=> setUsersArr(res.data))
+            .catch(err=> console.log(err))         
+    }, [])
+    
     const swiped = (direction, user2, sender) => {
         if(!sender){
         if(direction==='right'){
-            console.log(user2)
         if(sender === user2){
             axios.post('/match/add', {user1: user.id, user2: user2})
             .then(res=> setMatches(...matches, res.data))
@@ -150,36 +171,14 @@ function Cards (props) {
         console.log(people)
     }
     };
-    const [matchArr, setMatchArr] = useState([])
-    const [usersArr, setUsersArr] = useState([])
-
-
-    const [people, setPeople] = useState([])
-
-
-    useEffect(()=>{
-            console.log(user)
-            axios.get(`/request/received/${user.id}`)
-            .then(res=> setPeople(res.data))
-            .catch(err=> console.log(err))
-
-            axios.get(`/match/all/${user.id}`)
-            .then(res => setMatchArr(res.data))
-            .catch(err=> console.log(err))
-
-            axios.get(`/user/all/${user.id}`)
-            .then(res=> setUsersArr(res.data))
-            .catch(err=> console.log(err))         
-    }, [])
-
-    if(matchArr){
-        console.log(matchArr)
-        console.log(usersArr)
-    }
-    
     useEffect(()=> {
         if(matchArr[0] && usersArr[0]){
-            setPeople([...people, ...usersArr])
+           const newArr =  usersArr.filter((user)=> {
+             const found = matchArr.find((match)=> match.id === user.id)
+             return found ? false : true
+           })
+           console.log('The new arr is', newArr)
+            setPeople(newArr)
         // matchArr.data.map(match=> setPeople(usersArr.data.filter(usr => usr.id !== match.id)))
     }
     }, [matchArr, usersArr])
