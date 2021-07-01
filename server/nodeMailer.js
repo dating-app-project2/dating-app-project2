@@ -29,17 +29,17 @@ module.exports = (MAIL_TO) => {
 
     const message2 = `For any questions or suggestions please contact us at this email. 
     To unsubscribe go to the app settings or click here: `;
-        
+
 
     const mailOptions = {
         from: USER_EMAIL,
         to: MAIL_TO,
         subject: "Love is an open door!",
-        html: `<p>${message}</p> <p>${message2}</p>`,
-        link: `<a href='https://youtu.be/DLzxrzFCyOs'>Unsubscribe</a>`,
+        html: `<p>${message}</p> <p>${message2}</p> <a href='https://youtu.be/DLzxrzFCyOs'>Unsubscribe</a>`,
     };
 
     return transporter.sendMail(mailOptions, (error) => {
+        console.log('nodemailer', { error, info })
         if (error) {
             return (error.toString());
         }
