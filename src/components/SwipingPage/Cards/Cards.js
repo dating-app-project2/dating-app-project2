@@ -41,15 +41,22 @@ const useStyles = createUseStyles({
     name : {
         color: 'white',
         // backgroundColor: 'blue',
-        minWidth: '70px',
-        height:'30px'
+        minWidth: '40px',
+        height:'30px',
+        fontSize: '22px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start'
     },
     age : {
         color: 'white',
         // backgroundColor: 'red',
         minWidth: '50px',
         fontSize: '20px',
-        height:'30px'
+        height:'30px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
         
         
     },
@@ -67,7 +74,18 @@ const useStyles = createUseStyles({
         height: '50px',
         display: 'flex',
         alignItems: 'center',
-        marginTop: '400px',
+        marginTop: '-10px'
+        
+
+    },
+    allUserCardInfo : {
+        // backgroundColor: 'lightgreen',
+        width: '90%',
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'absolute',
+        bottom: '0px'
+
 
     },
     // swipeButtons: {
@@ -111,10 +129,31 @@ const outOfFrame = (name) => {
 function Cards (props) {
     console.log(props)
     const {user, setMatches, matches, setRequests} = props
+    const [matchArr, setMatchArr] = useState([])
+    const [usersArr, setUsersArr] = useState([])
+    const [requestArr, setRequestArr] = useState([])
+    const [people, setPeople] = useState([])
+    //first step is to get all the users that aren't equal to our user id and save that to an array of objects that we can map over
+
+    //we then need to check and see if any of those users are already in our match table. if they are, we need to remove them from the array
+   useEffect(()=>{
+            console.log(user)
+            axios.get(`/request/received/${user.id}`)
+            .then(res=> setRequestArr(res.data))
+            .catch(err=> console.log(err))
+
+            axios.get(`/match/all/${user.id}`)
+            .then(res => setMatchArr(res.data))
+            .catch(err=> console.log(err))
+
+            axios.get(`/user/all/${user.id}`)
+            .then(res=> setUsersArr(res.data))
+            .catch(err=> console.log(err))         
+    }, [])
+    
     const swiped = (direction, user2, sender) => {
         if(!sender){
         if(direction==='right'){
-            console.log(user2)
         if(sender === user2){
             axios.post('/match/add', {user1: user.id, user2: user2})
             .then(res=> setMatches(...matches, res.data))
@@ -132,43 +171,21 @@ function Cards (props) {
         console.log(people)
     }
     };
-    const [matchArr, setMatchArr] = useState([])
-    const [usersArr, setUsersArr] = useState([])
-
-
-    const [people, setPeople] = useState([])
-
-
-    useEffect(()=>{
-            console.log(user)
-            axios.get(`/request/received/${user.id}`)
-            .then(res=> setPeople(res.data))
-            .catch(err=> console.log(err))
-
-            axios.get(`/match/all/${user.id}`)
-            .then(res => setMatchArr(res.data))
-            .catch(err=> console.log(err))
-
-            axios.get(`/user/all/${user.id}`)
-            .then(res=> setUsersArr(res.data))
-            .catch(err=> console.log(err))         
-    }, [])
-
-    if(matchArr){
-        console.log(matchArr)
-        console.log(usersArr)
-    }
-    
     useEffect(()=> {
         if(matchArr[0] && usersArr[0]){
-            setPeople([...people, ...usersArr])
+           const newArr =  usersArr.filter((user)=> {
+             const found = matchArr.find((match)=> match.id === user.id)
+             return found ? false : true
+           })
+           console.log('The new arr is', newArr)
+            setPeople(newArr)
         // matchArr.data.map(match=> setPeople(usersArr.data.filter(usr => usr.id !== match.id)))
     }
     }, [matchArr, usersArr])
     console.log(people)
 
     //render cards where the receiver id is = to the userid
-    const {Cards, Cards__cardContainer, card, swipe, name, age, bio, nameAndAge} = useStyles()
+    const {Cards, Cards__cardContainer, card, swipe, name, age, bio, nameAndAge, allUserCardInfo} = useStyles()
 
 //     const {Cards, Cards__cardContainer, card, swipe} = useStyles()
 
@@ -185,11 +202,13 @@ function Cards (props) {
                         <div 
                         style={{background: `linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,1)), url(${person.url})`, backgroundSize: 'cover', backgroundPositionX: 'center', backgroundPositionY: 'center'}}  
                         className ={card}>
+                        <div className={allUserCardInfo}>
                         <div className={nameAndAge}>
                             <h3 className={name}>{person.first},</h3>
                             <h4 className={age}>{person.age}</h4>
                         </div>
                             <p className={bio}>{person.bio}</p>
+                        </div>
                         </div>
                     </TinderCard>
                     ))}

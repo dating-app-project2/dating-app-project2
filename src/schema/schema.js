@@ -18,6 +18,7 @@ export const finishRegisterSchema = yup.object({
   first: yup.string().required('First required').min(2).max(30),
   last: yup.string().required('Last required').min(2).max(100),
   age: yup.number().required('Age required').min(18, "Min age is 18").label("Age"),
+  bio: yup.string().required().max(450),
   gender: yup.string().required('gender required').min(3),
   rel_type: yup.string().required('Relationship type required').min(3).max(30),
   sexual_or: yup.string().required('Sexual orientation required').min(3).max(30)
