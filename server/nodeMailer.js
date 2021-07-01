@@ -25,15 +25,18 @@ module.exports = (MAIL_TO) => {
     });
 
     const message = `Hi! Thank you for signing up to our dating app. We hope you find your soulmate!
-    You are signed up to recive updates about our app and notifications of new matches and likes. Enjoy our app!
-    For and questions or suggestions please contact us at this email. To unsubscribe go to the app settings`;
+    You are signed up to recive updates about our app and notifications of new matches and likes. Enjoy our app!`;
+
+    const message2 = `For any questions or suggestions please contact us at this email. 
+    To unsubscribe go to the app settings or click here: `;
         
 
     const mailOptions = {
         from: USER_EMAIL,
         to: MAIL_TO,
         subject: "Love is an open door!",
-        html: `<p>${message}</p>`,
+        html: `<p>${message}</p> <p>${message2}</p>`,
+        link: `<a href='https://youtu.be/DLzxrzFCyOs'>Unsubscribe</a>`,
     };
 
     return transporter.sendMail(mailOptions, (error) => {
