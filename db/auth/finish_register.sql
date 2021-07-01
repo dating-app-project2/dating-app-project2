@@ -10,5 +10,6 @@ rel_type = $9,
 sexual_or = $10,
 bio = $11,
 url = $12
-WHERE id = $1
-RETURNING *;
+WHERE id = $1;
+
+SELECT * FROM users WHERE id  = $1;
