@@ -12,5 +12,3 @@ bio = $11,
 url = $12
 WHERE id = $1
 RETURNING *;
--- we are not including phone number, bio, or url
-

@@ -2,7 +2,7 @@ import React from "react"
 import { Formik, Form } from "formik"
 import Button from "@material-ui/core/Button"
 import CustomTextField from "../CustomTextField/CustomTextField"
-import { finishRegisterSchema } from "../../schema/schema"
+import { } from "../../schema/schema"
 import { connect } from "react-redux"
 import { setUser } from "../../redux/authReducer"
 import { createUseStyles } from "react-jss"
@@ -34,10 +34,9 @@ const useStyles = createUseStyles({
         }
     }
 })
+//The profile page will be very similar to the RegisterSurveyPage. We will update the users table with any info they decide to edit
+//this will also be the page where a user can add 6 profile pictures
 
-//profile page should allow user to input 6 profile pictures, a bio, their phone number, and edit any of the other information they have on their users table. This is also where the user will be able to set their interests. 
-//s3 for the profile pictures. we will be inserting into the pictures table to the user. 
-// we will use an update sql to update the users table with a phone number, an id to the pictures table, 
 
 const ProfilePage = ({ history, setUser }) => {
 
@@ -117,9 +116,7 @@ const ProfilePage = ({ history, setUser }) => {
                         variant="contained"
                         color="secondary"
                     >
-
                         Edit
-
           </Button>
                 </Form>
             )}

@@ -6,19 +6,8 @@ import { useEffect } from 'react';
 import { getUser } from '../../../redux/authReducer'
 import {connect} from 'react-redux'
 import { setMatches } from '../../../redux/matchReducer'
-// import ReplayIcon from '@material-ui/icons/Replay'
-// import CloseIcon from '@material-ui/icons/Close'
-// import StarRateIcon from '@material-ui/icons/StarRate'
-// import FavoriteIcon from '@material-ui/icons/Favorite'
-// import FlashOnIcon from '@material-ui/icons/FlashOn'
-// import  IconButton from '@material-ui/core/IconButton'
 
 const useStyles = createUseStyles({
-    // SwipingPage: {
-    //     // display: 'flex',
-    //     // flexDirection: "column",
-    //     // textAlign: 'center'
-    // },
     Cards__cardContainer:{
         display: 'flex',
         justifyContent: 'center',
@@ -47,6 +36,7 @@ const useStyles = createUseStyles({
     cardContent : {
         width: '100%',
         height: '100%'
+
     },
     name : {
         color: 'white',
@@ -111,6 +101,7 @@ const useStyles = createUseStyles({
     //     padding: '3vw !important',
     //     color: '#915dd1 !important'
     // }
+    }
 })
 
 const outOfFrame = (name) => {
@@ -123,7 +114,6 @@ function Cards (props) {
     const swiped = (direction, user2, sender) => {
         if(!sender){
         if(direction==='right'){
-            //if a user swipes right we need to check and see if there is a request from user2 that already exists. if it exists we need to delete it from the requests table and post the userid's to the matches table. we should also do a toastify alert here to alert them that there was a match with the user and to check their matches table. We could also do a history.push('/matches') or to the individual match    
             console.log(user2)
         if(sender === user2){
             axios.post('/match/add', {user1: user.id, user2: user2})
@@ -144,11 +134,10 @@ function Cards (props) {
     };
     const [matchArr, setMatchArr] = useState([])
     const [usersArr, setUsersArr] = useState([])
-    //if people has the input then don't accept it, but if it doesn't, input it
-    const [people, setPeople] = useState([])
-    //people is going to be all the cards that are rendered on the screen for the users. in the useEffect below, we are setting people equal to the received requests for the user who's id is = to user.id
 
-    //people will be equal to requests sent to you along with the rest of the users table that is not in your matches table
+
+    const [people, setPeople] = useState([])
+
 
     useEffect(()=>{
             console.log(user)
@@ -176,11 +165,13 @@ function Cards (props) {
         // matchArr.data.map(match=> setPeople(usersArr.data.filter(usr => usr.id !== match.id)))
     }
     }, [matchArr, usersArr])
-//set people to all the users and all the requests, filter through people and remove all users from the people arr that have a matching id with the id from the matches get request
-console.log(people)
+    console.log(people)
 
     //render cards where the receiver id is = to the userid
     const {Cards, Cards__cardContainer, card, swipe, name, age, bio, nameAndAge} = useStyles()
+
+//     const {Cards, Cards__cardContainer, card, swipe} = useStyles()
+
     return(
             <div className={Cards}>
                  <div className={Cards__cardContainer}>

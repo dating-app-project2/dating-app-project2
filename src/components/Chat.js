@@ -84,6 +84,7 @@ const Chat = (props) => {
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
 
+    
 
     const { chatSectionBox } = useStyles()
     const { chatSection } = useStyles()
@@ -137,6 +138,12 @@ const Chat = (props) => {
 }
 }, [socket])
 
+  const AlwaysScrollToBottom = () => {
+    const elementRef = useRef();
+    useEffect(() => elementRef.current.scrollIntoView());
+    return <div ref={elementRef} />;
+  };
+
   const sendMessage = (e) => {
     e.preventDefault()
     if (socket && message){
@@ -163,10 +170,12 @@ const Chat = (props) => {
                     <div className={userMsg}>
                     <p className={messsageContent}>{body.message_content}</p>  
                     <p className={msgName}>{user.first}</p>
+                     <AlwaysScrollToBottom/>
                     </div> :
                     <div className={matchMsg}> 
                     <p className={msgName}>{body.first}</p>
                     <p className={messsageContent}>{body.message_content}</p>
+                      <AlwaysScrollToBottom/>
                     </div>}
                   </div>
                 ))}

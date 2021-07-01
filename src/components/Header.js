@@ -91,6 +91,7 @@ const Header = ({user, setUser, history, location}) => {
             <PersonIcon 
             fontSize="large" 
             className={headerIcon}
+            onClick={()=> history.push('/profile')}
             />
           </IconButton>
           <IconButton>

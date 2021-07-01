@@ -20,5 +20,6 @@ export default(
         <Route path="/chat/:matchId" component={Chat}/>
         <Route path="/swipingPage" component={SwipingPage}/>
         <Route path="/matches" component={Matches}/>
+        <Route path="/profile" component={ProfilePage}/>
     </Switch>
 )
