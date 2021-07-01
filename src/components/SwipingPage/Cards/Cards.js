@@ -41,15 +41,22 @@ const useStyles = createUseStyles({
     name : {
         color: 'white',
         // backgroundColor: 'blue',
-        minWidth: '70px',
-        height:'30px'
+        minWidth: '40px',
+        height:'30px',
+        fontSize: '22px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start'
     },
     age : {
         color: 'white',
         // backgroundColor: 'red',
         minWidth: '50px',
         fontSize: '20px',
-        height:'30px'
+        height:'30px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
         
         
     },
@@ -67,7 +74,18 @@ const useStyles = createUseStyles({
         height: '50px',
         display: 'flex',
         alignItems: 'center',
-        marginTop: '400px',
+        marginTop: '-10px'
+        
+
+    },
+    allUserCardInfo : {
+        // backgroundColor: 'lightgreen',
+        width: '90%',
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'absolute',
+        bottom: '0px'
+
 
     },
     // swipeButtons: {
@@ -168,7 +186,7 @@ function Cards (props) {
     console.log(people)
 
     //render cards where the receiver id is = to the userid
-    const {Cards, Cards__cardContainer, card, swipe, name, age, bio, nameAndAge} = useStyles()
+    const {Cards, Cards__cardContainer, card, swipe, name, age, bio, nameAndAge, allUserCardInfo} = useStyles()
 
 //     const {Cards, Cards__cardContainer, card, swipe} = useStyles()
 
@@ -185,11 +203,13 @@ function Cards (props) {
                         <div 
                         style={{background: `linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,1)), url(${person.url})`, backgroundSize: 'cover', backgroundPositionX: 'center', backgroundPositionY: 'center'}}  
                         className ={card}>
+                        <div className={allUserCardInfo}>
                         <div className={nameAndAge}>
                             <h3 className={name}>{person.first},</h3>
                             <h4 className={age}>{person.age}</h4>
                         </div>
                             <p className={bio}>{person.bio}</p>
+                        </div>
                         </div>
                     </TinderCard>
                     ))}
