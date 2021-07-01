@@ -1,5 +1,5 @@
 export const variables = {
-  primary: '#EF8354',
+  primary: '#B7094C',
   secondary: '#B5FFE9',
   blue: '#C5E0D8',
   sand: '#C9C9C9',
