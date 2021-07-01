@@ -128,10 +128,11 @@ const outOfFrame = (name) => {
 
 function Cards (props) {
     console.log(props)
-    const {user, setMatches, matches, setRequests} = props
+    const {user, setMatches, matches} = props
     const [matchArr, setMatchArr] = useState([])
     const [usersArr, setUsersArr] = useState([])
-    const [requestArr, setRequestArr] = useState([])
+    const [receivedArr, setReceivedArr] = useState([])
+    const [sentArr, setSentArr] = useState([])
     const [people, setPeople] = useState([])
     //first step is to get all the users that aren't equal to our user id and save that to an array of objects that we can map over
 
@@ -139,7 +140,7 @@ function Cards (props) {
    useEffect(()=>{
             console.log(user)
             axios.get(`/request/received/${user.id}`)
-            .then(res=> setRequestArr(res.data))
+            .then(res=> setReceivedArr(res.data))
             .catch(err=> console.log(err))
 
             axios.get(`/match/all/${user.id}`)
@@ -148,13 +149,17 @@ function Cards (props) {
 
             axios.get(`/user/all/${user.id}`)
             .then(res=> setUsersArr(res.data))
-            .catch(err=> console.log(err))         
+            .catch(err=> console.log(err))
+            
+            axios.get(`/request/sent/${user.id}`)
+            .then(res=> setSentArr(res.data))
+            .catch(err=> console.log(err))
     }, [])
     
-    const swiped = (direction, user2, sender) => {
-        if(!sender){
+    const swiped = (direction, user2) => {
+        const requested = receivedArr.find((request)=> request.id === user2)
         if(direction==='right'){
-        if(sender === user2){
+        if(requested){
             axios.post('/match/add', {user1: user.id, user2: user2})
             .then(res=> setMatches(...matches, res.data))
             .catch(err=> console.log(err))
@@ -165,20 +170,26 @@ function Cards (props) {
             axios.post('/request/create', {sender_id: user.id, receiver_id: user2}).then(res=> res.data).catch(err=> console.log(err))
         }
         }
-        if(direction==='left'){
-           axios.delete(`/request/delete/${user2}/${user.id}`).then(res => setPeople(res.data)).catch(err=> console.log(err) )
+        if(direction==='left'&& requested){
+           axios.delete(`/request/delete/${user2}/${user.id}`).then(res => setReceivedArr([...new Set(res.data)])).catch(err=> console.log(err) )
         }
         console.log(people)
-    }
+        console.log(receivedArr)
     };
     useEffect(()=> {
-        if(matchArr[0] && usersArr[0]){
-           const newArr =  usersArr.filter((user)=> {
+        if(usersArr[0]){
+           const noMatches =  usersArr.filter((user)=> {
              const found = matchArr.find((match)=> match.id === user.id)
              return found ? false : true
            })
-           console.log('The new arr is', newArr)
-            setPeople(newArr)
+           console.log('People arr with no matches is ', noMatches)
+            
+          const noSentRequests =  noMatches.filter((user)=> {
+               const sentRequest = sentArr.find((sent)=> sent.sender_id === user.id)
+               return sentRequest ? false : true
+           })
+           setPeople(noSentRequests)
+           console.log('People arr with no sent requests is ', noSentRequests)
         // matchArr.data.map(match=> setPeople(usersArr.data.filter(usr => usr.id !== match.id)))
     }
     }, [matchArr, usersArr])
@@ -197,7 +208,7 @@ function Cards (props) {
                     className={swipe}
                     key={person.id}
                     preventSwipe={["up", "down"]}
-                    onSwipe={(dir)=> swiped(dir, person.id, person.sender_id)}
+                    onSwipe={(dir)=> swiped(dir, person.id)}
                     onCardLeftScreen={()=>outOfFrame(person.first)}>
                         <div 
                         style={{background: `linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,1)), url(${person.url})`, backgroundSize: 'cover', backgroundPositionX: 'center', backgroundPositionY: 'center'}}  

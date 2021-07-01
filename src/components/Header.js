@@ -30,7 +30,7 @@ const useStyles = createUseStyles({
   },
   headerLogo: {
     objectFit: "contain",
-    height: '40px',
+    height: '10vh',
     backgroundColor: 'primary'
   },
    icons:{
@@ -95,18 +95,18 @@ const Header = ({user, setUser, history, location}) => {
             />
           </IconButton>
           <IconButton>
-            <img 
-               className={headerLogo}
-               src='https://www.pngfind.com/pngs/m/175-1753641_tinder-logo-icon-free-download-png-transparent-tinder.png'
-               alt="Tinder Logo"
-               onClick={() => history.push("/swipingpage")}
-            />
-          </IconButton>
-          <IconButton>
             <ForumIcon 
               fontSize='large' 
               className={headerIcon}
               onClick={() => history.push("/matches")}
+            />
+          </IconButton>
+          <IconButton>
+            <img 
+               className={headerLogo}
+               src='https://i.ibb.co/3T8j008/heart2.png'
+               alt="Tinder Logo"
+               onClick={() => history.push("/swipingpage")}
             />
           </IconButton>
           <IconButton>

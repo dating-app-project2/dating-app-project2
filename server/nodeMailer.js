@@ -39,7 +39,7 @@ module.exports = (MAIL_TO) => {
     };
 
     return transporter.sendMail(mailOptions, (error) => {
-        console.log('nodemailer', { error, info })
+        console.log('nodemailer', { error})
         if (error) {
             return (error.toString());
         }
