@@ -47,14 +47,14 @@ const useStyles = createUseStyles({
     },
     userMsg: {
       // backgroundColor: "red",
-      width: "450px",
+      width: "430px",
       display: "flex",
       justifyContent: "flex-end",
       alignItems: "center"
     },
     matchMsg: {
       // backgroundColor: "yellow",
-      width: "450px",
+      width: "430px",
       display: "flex",
       justifyContent: "flex-start",
       alignItems: "center"
@@ -95,6 +95,7 @@ const Chat = (props) => {
     const { msgName } = useStyles()
     const { messsageContent } = useStyles()
 
+
     useEffect(()=> {
       if(user && user.id){
             history.push(`/chat/${matchId}`)
@@ -102,6 +103,7 @@ const Chat = (props) => {
             history.push('/login')
         }
   }, [user, history])
+
 
 
     useEffect(() => {
@@ -177,6 +179,7 @@ const Chat = (props) => {
                     </div>}
                   </div>
                 ))}
+                <div style={{float: "left", clear: "both"}}></div>
               </div>
                 <div className={inputAndBtn}>
                   <TextField

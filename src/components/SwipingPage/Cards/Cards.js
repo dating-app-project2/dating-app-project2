@@ -21,7 +21,6 @@ const useStyles = createUseStyles({
             color: 'fff'
         },
         position:'relative',
-        backgroundColor:'fff',
         width: '600px',
         padding: '20px',
         maxWidth: '85vw',
@@ -37,6 +36,71 @@ const useStyles = createUseStyles({
     cardContent : {
         width: '100%',
         height: '100%'
+
+    },
+    name : {
+        color: 'white',
+        // backgroundColor: 'blue',
+        minWidth: '70px',
+        height:'30px'
+    },
+    age : {
+        color: 'white',
+        // backgroundColor: 'red',
+        minWidth: '50px',
+        fontSize: '20px',
+        height:'30px'
+        
+        
+    },
+    bio : {
+        color: 'white',
+        textAlign: 'left',
+        marginTop: '-10px'
+        // background: 'linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,1))',
+        // boxShadow: '5px 5px 5px black',
+
+    },
+    nameAndAge : {
+        color: 'white',
+        // backgroundColor: 'lightgreen',
+        height: '50px',
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: '400px',
+
+    },
+    // swipeButtons: {
+    //     position: 'relative',
+    //     top: '60vh',
+    //     display: '10vh',
+    //     width: '100%',
+    //     justifyContent: 'space-evenly',
+    //     multiIconButtonRoot: {
+    //         backgroundColor: "white",
+    //         boxShadow: '0px 10px 53px 0px rgba(0, 0, 0, 0.3) !important'
+    //     }
+    // },
+    // swipeButtons__repeat: {
+    //     padding: '3vw !important',
+    //     color: '#f5b748 !important'
+    // },
+    // swipeButtons__left: {
+    //     padding: '3vw !important',
+    //     color: '#ec5e6f !important'
+    // },
+    // swipeButtons__star: {
+    //     padding: '3vw !important',
+    //     color: '#62b4f9 !important'
+    // },
+    // swipeButtons__right: {
+    //     padding: '3vw !important',
+    //     color: '#76e2b3 !important'
+    // },
+    // swipeButtons__lightning: {
+    //     padding: '3vw !important',
+    //     color: '#915dd1 !important'
+    // }
     }
 })
 
@@ -103,7 +167,11 @@ function Cards (props) {
     }, [matchArr, usersArr])
     console.log(people)
 
-    const {Cards, Cards__cardContainer, card, swipe} = useStyles()
+    //render cards where the receiver id is = to the userid
+    const {Cards, Cards__cardContainer, card, swipe, name, age, bio, nameAndAge} = useStyles()
+
+//     const {Cards, Cards__cardContainer, card, swipe} = useStyles()
+
     return(
             <div className={Cards}>
                  <div className={Cards__cardContainer}>
@@ -114,11 +182,14 @@ function Cards (props) {
                     preventSwipe={["up", "down"]}
                     onSwipe={(dir)=> swiped(dir, person.id, person.sender_id)}
                     onCardLeftScreen={()=>outOfFrame(person.first)}>
-                        <div style={{backgroundImage: `${person.url}`
-                        }}className ={card}>
-                            <h3>{person.first}</h3>
-                            <h4>{person.age}</h4>
-                            <p>{person.bio}</p>
+                        <div 
+                        style={{background: `linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,1)), url(${person.url})`, backgroundSize: 'cover', backgroundPositionX: 'center', backgroundPositionY: 'center'}}  
+                        className ={card}>
+                        <div className={nameAndAge}>
+                            <h3 className={name}>{person.first},</h3>
+                            <h4 className={age}>{person.age}</h4>
+                        </div>
+                            <p className={bio}>{person.bio}</p>
                         </div>
                     </TinderCard>
                     ))}
