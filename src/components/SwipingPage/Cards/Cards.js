@@ -40,7 +40,7 @@ const useStyles = createUseStyles({
     },
     name : {
         color: 'white',
-        backgroundColor: 'blue',
+        // backgroundColor: 'blue',
         minWidth: '40px',
         height:'30px',
         fontSize: '22px',
@@ -50,7 +50,7 @@ const useStyles = createUseStyles({
     },
     age : {
         color: 'white',
-        backgroundColor: 'red',
+        // backgroundColor: 'red',
         minWidth: '50px',
         fontSize: '20px',
         height:'30px',
