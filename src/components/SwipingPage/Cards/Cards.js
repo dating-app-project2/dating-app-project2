@@ -32,7 +32,6 @@ const useStyles = createUseStyles({
             color: 'fff'
         },
         position:'relative',
-        backgroundColor:'fff',
         width: '600px',
         padding: '20px',
         maxWidth: '85vw',
@@ -48,6 +47,38 @@ const useStyles = createUseStyles({
     cardContent : {
         width: '100%',
         height: '100%'
+    },
+    name : {
+        color: 'white',
+        // backgroundColor: 'blue',
+        minWidth: '70px',
+        height:'30px'
+    },
+    age : {
+        color: 'white',
+        // backgroundColor: 'red',
+        minWidth: '50px',
+        fontSize: '20px',
+        height:'30px'
+        
+        
+    },
+    bio : {
+        color: 'white',
+        textAlign: 'left',
+        marginTop: '-10px'
+        // background: 'linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,1))',
+        // boxShadow: '5px 5px 5px black',
+
+    },
+    nameAndAge : {
+        color: 'white',
+        // backgroundColor: 'lightgreen',
+        height: '50px',
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: '400px',
+
     },
     // swipeButtons: {
     //     position: 'relative',
@@ -149,7 +180,7 @@ function Cards (props) {
 console.log(people)
 
     //render cards where the receiver id is = to the userid
-    const {Cards, Cards__cardContainer, card, swipe} = useStyles()
+    const {Cards, Cards__cardContainer, card, swipe, name, age, bio, nameAndAge} = useStyles()
     return(
             <div className={Cards}>
                  <div className={Cards__cardContainer}>
@@ -160,11 +191,14 @@ console.log(people)
                     preventSwipe={["up", "down"]}
                     onSwipe={(dir)=> swiped(dir, person.id, person.sender_id)}
                     onCardLeftScreen={()=>outOfFrame(person.first)}>
-                        <div style={{backgroundImage: `${person.url}`
-                        }}className ={card}>
-                            <h3>{person.first}</h3>
-                            <h4>{person.age}</h4>
-                            <p>{person.bio}</p>
+                        <div 
+                        style={{background: `linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,1)), url(${person.url})`, backgroundSize: 'cover', backgroundPositionX: 'center', backgroundPositionY: 'center'}}  
+                        className ={card}>
+                        <div className={nameAndAge}>
+                            <h3 className={name}>{person.first},</h3>
+                            <h4 className={age}>{person.age}</h4>
+                        </div>
+                            <p className={bio}>{person.bio}</p>
                         </div>
                     </TinderCard>
                     ))}

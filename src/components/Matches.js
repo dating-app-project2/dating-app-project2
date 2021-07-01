@@ -34,8 +34,7 @@ const useStyles = createUseStyles({
       
     },
     matchImg:{
-      height: '90px'
-
+      height: '100px',
     },
     matchImgBox:{
       width: '70px',
@@ -47,7 +46,7 @@ const useStyles = createUseStyles({
       // backgroundColor: "blue",
     },
     eachMatch:{
-      width: '90px',
+      minWidth: '90px',
       height: '100px',
       display: "flex",
       flexDirection: "column",
@@ -56,7 +55,7 @@ const useStyles = createUseStyles({
       // backgroundColor: "blue",
     },
     eachMatchChat:{
-      width: '190px',
+      width: '400px',
       height: '100px',
       display: "flex",
       flexDirection: "row",
