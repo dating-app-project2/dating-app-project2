@@ -137,7 +137,7 @@ const Login = ({ history, setUser, password}) => {
       borderRight: '5px solid white'
       }}>
 
-        <h1 className={lifeShort}>WELCOME BACK, <br/><span className={makeTheFirst}>GO FALL IN LOVE</span></h1>
+        <h1 className={lifeShort}>WELCOME BACK, <br/><span className={makeTheFirst}>MAKE YOUR DREAMS COME TRUE</span></h1>
       </div>
     <Formik
       initialValues={{

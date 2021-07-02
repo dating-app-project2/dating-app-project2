@@ -85,7 +85,6 @@ const ProfilePage = ({ history, setUser }) => {
                             placeholder="Last Name"
                         />
                     </div>
-                    <h2>Age</h2>
                     <div className={formSection}>
                         <CustomTextField
                             name="age"
