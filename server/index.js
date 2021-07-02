@@ -78,3 +78,6 @@ app.get('/user/all/:userId', userCtrl.getUsers)
 
 //send message endpoint
 app.post('/message/new', msgCtrl.sendMessage)
+
+//last message endpoint
+app.get('/message/last', msgCtrl.lastMsg)

@@ -16,7 +16,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const {primary, secondary, sand, red} = variables
 const useStyles = createUseStyles({
   header:{
-    backgroundColor: primary,
+    backgroundColor: 'transparent',
     display: 'flex',
     width: '100%',
     height: '10vh',
@@ -57,11 +57,20 @@ const useStyles = createUseStyles({
     headerLogo: {
       objectFit: "contain",
       height: '40px'
-  }
+    },
+    signInBtn: {
+      display: 'none'
+    },
+    signInBtn: {
+      display: 'none'
+    },
+    questionIcon: {
+      display: 'none'
+    },
 })
 
 const Header = ({user, setUser, history, location}) => {
-    const {header, nav, icons, questionIcon, headerIcon, headerLogo} = useStyles()
+    const {header, nav, icons, questionIcon, headerIcon, headerLogo, signInBtn} = useStyles()
     const logout = () => {
         axios.post('/auth/logout')
         .then(()=> 
@@ -140,6 +149,7 @@ const Header = ({user, setUser, history, location}) => {
             <button
               color="primary"
               onClick={() => history.push("/register")}
+              className={signInBtn}
             >
               Register
             </button>
@@ -147,6 +157,7 @@ const Header = ({user, setUser, history, location}) => {
             <button
               color="primary"
               onClick={() => history.push("/login")}
+              className={signInBtn}
             >
               Sign In
             </button>

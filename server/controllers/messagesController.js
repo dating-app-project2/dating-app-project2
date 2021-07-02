@@ -24,4 +24,12 @@ module.exports={
         console.log(messages)
         socket.emit('messages', {messages})
     },
+    lastMsg: async (db, io, socket, body) => {
+        const {matchId} = body
+        const messages = await db.messages.get_last_messages(matchId)
+        socket.join(matchId)
+        console.log(messages)
+        socket.emit('messages', {messages})
+        
+    },
 }
