@@ -12,7 +12,8 @@ import "react-toastify/dist/ReactToastify.css"
 const {primary}  = variables
 const useStyles = createUseStyles({
   app: {
-    backgroundColor: primary,
+    backgroundColor: '#3b3b3b',
+    // backgroundColor: primary,
     textAlign: "center",
     display: "flex",
     flexFlow: "column",

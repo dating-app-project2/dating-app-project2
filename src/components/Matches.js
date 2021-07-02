@@ -11,26 +11,29 @@ import {getUser} from '../redux/authReducer'
 import Header from "./Header"
 
 const useStyles = createUseStyles({
-    messagesBox: {
-      width: "450px",
-      height: "600px",
-      display: "flex",
-      justifyContent: "space-between",
-      flexDirection: "column",
-      alignItems: "flex-end",
-      backgroundColor: "white"
-    },
-    matches: {
-      width: "450px",
-      height: "120px",
-      display: "flex",
+  messagesBox: {
+    width: "600px",
+    height: "500px",
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    backgroundColor: "white",
+    borderRadius: '20px'
+  },
+  matches: {
+    width: "600px",
+    height: "130px",
+    display: "flex",
     //   justifyContent: "space-between",
-      flexDirection: "row",
-      justifyContent: 'flex-start',
-      alignItems: "flex-start",
-      borderBottom: "2px solid black",
-      backgroundColor: "white",
-      overflow: 'auto',
+    flexDirection: "row",
+    justifyContent: 'flex-start',
+    alignItems: "flex-start",
+    borderBottom: "2px solid black",
+    backgroundColor: "white",
+    overflow: 'auto',
+    // backgroundColor: '#0091AD',
+    borderRadius: '20px 20px 0px 0px'
       
     },
     matchImg:{
@@ -43,6 +46,7 @@ const useStyles = createUseStyles({
       overflow: "hidden",
       display: "flex",
       alignItems: "center",
+      border: '3px solid #5C4D7D'
       // backgroundColor: "blue",
     },
     eachMatch:{
@@ -65,7 +69,7 @@ const useStyles = createUseStyles({
       marginLeft: "10px"
     },
     messagesSec:{
-      width: '450px',
+      width: '600px',
       height: '499px',
       display: "flex",
       flexDirection: "column",
@@ -74,10 +78,11 @@ const useStyles = createUseStyles({
       display: "flex",
       flexDirection: "column",
       justifyContent: "flex-start",
-      overflow: "auto"
+      overflow: "auto",
+
     },
     eachMessage:{
-      width: '434px',
+      width: '590px',
       minHeight: '99px',
       display: "flex",
       flexDirection: "column",

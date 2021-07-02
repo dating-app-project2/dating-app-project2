@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
         width: '600px',
         padding: '20px',
         maxWidth: '85vw',
-        height: '50vh',
+        height: '500px',
         boxShadow: '0px 18px 53px 0px rgba(0, 0, 0, 0.3)',
         borderRadius: '20px',
         backgroundSize: 'cover',
