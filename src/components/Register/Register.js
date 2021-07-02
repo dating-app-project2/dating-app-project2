@@ -108,13 +108,27 @@ const useStyles = createUseStyles({
     marginLeft: '25px',
     textShadow: '3px 3px 5px rgba(250, 250, 250, 0.4)' 
   },
+  logoDream: {
+    // backgroundColor: 'salmon',
+    position: 'absolute',
+    width: '300px',
+    top: 8,
+    left: 30
+  },
+  heartLogo: {
+    // backgroundColor: 'salmon',
+    position: 'absolute',
+    width: '100px',
+    top: 690,
+    right: 35
+  },
 
 })
 
 
 
 const Register = ({ history, setUser }) => {
-  const { registerForm, formSection, imageAndRegister, mainImage, pass1, pass2, todayText, signUpText, button, buttonLogin, buttons, buttonAbout, makeTheFirst, lifeShort } = useStyles()
+  const { registerForm, formSection, imageAndRegister, mainImage, pass1, pass2, todayText, signUpText, button, buttonLogin, buttons, buttonAbout, makeTheFirst, lifeShort, heartLogo, logoDream } = useStyles()
   const register = body => {
     axios
       .post("/auth/register", body)
@@ -127,6 +141,20 @@ const Register = ({ history, setUser }) => {
   }
   return (
     <div>
+                  <img 
+               className={heartLogo}
+               src='https://i.ibb.co/6R4hC77/newlogo.png'
+               alt="Tinder Logo"
+              //  onClick={() => history.push("/swipingpage")}
+            />
+
+<img 
+               className={logoDream}
+               src='https://www.dreamscometrue.org/wp-content/themes/bootrapwp-3d/images/dct-logo-horizontal.png'
+               alt="Tinder Logo"
+              //  onClick={() => history.push("/swipingpage")}
+            />
+
                   <div className={buttonAbout}>
               <Button
                 onClick={() => history.push("/about")}
