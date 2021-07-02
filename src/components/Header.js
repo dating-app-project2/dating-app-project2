@@ -113,7 +113,7 @@ const Header = ({user, setUser, history, location}) => {
           <IconButton>
             <img 
                className={headerLogo}
-               src='https://i.ibb.co/3T8j008/heart2.png'
+               src='https://i.ibb.co/6R4hC77/newlogo.png'
                alt="Tinder Logo"
                onClick={() => history.push("/swipingpage")}
             />
